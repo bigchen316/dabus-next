@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+install_log.txt
+build_log.txt
+serve.log
+progress.txt
+shortpath.txt
+.vercel/
