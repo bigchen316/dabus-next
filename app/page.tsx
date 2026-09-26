@@ -1,11 +1,12 @@
 import Reveal from "@/components/Reveal";
 import DabaAvatar from "@/components/DabaAvatar";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main>
+    <main id="main-content" className="editorial-page editorial-home">
       {/* ① Hero · 双栏不对称（1 : 0.6） */}
-      <section className="hero" id="top">
+      <section className="hero editorial-hero" id="top">
         <div>
           <span className="label-caps">Route 01 · Personal Site</span>
           <h1>大巴Bus</h1>
@@ -30,15 +31,31 @@ export default function Home() {
         <div className="hero-visual">
           <Reveal>
             <figure className="bus-window">
-              <DabaAvatar variant="bust" />
+              <DabaAvatar />
               <figcaption>司机本巴，正在发车</figcaption>
             </figure>
           </Reveal>
         </div>
       </section>
 
+      <section className="feature-article-section">
+        <div className="wrap">
+          <Reveal>
+            <Link className="feature-article" href="/articles/workbuddy-vs-codex/">
+              <div>
+                <span className="route-line">FIRST REVIEW · PROJECT NOTES</span>
+                <h2>同一个个人站，两轮 AI 协作</h2>
+                <p>从 Work Buddy 的视觉起稿，到 Codex 优化网站和大巴 IP，记录这次真实改版。</p>
+              </div>
+              <span className="feature-article-cta">阅读改版复盘 <span aria-hidden="true">→</span></span>
+            </Link>
+            <Link className="concept-hub-link" href="/design-options/">想看三种更大胆的首页方向？预览设计提案 ↗</Link>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ② 三条运营线路 · 三列卡片 */}
-      <section id="lines">
+      <section className="editorial-routes" id="lines">
         <div className="wrap">
           <Reveal>
             <div className="sec-head">
@@ -77,7 +94,7 @@ export default function Home() {
       </section>
 
       {/* ③ 到站广播 · 全宽深色面板 */}
-      <section className="broadcast">
+      <section className="broadcast editorial-broadcast">
         <div className="wrap">
           <Reveal>
             <p className="stop-big">
@@ -99,7 +116,7 @@ export default function Home() {
       </section>
 
       {/* ④ 路线图 · 中轴时间线 */}
-      <section>
+      <section className="editorial-timeline-section">
         <div className="wrap">
           <Reveal>
             <div className="sec-head">
@@ -150,7 +167,7 @@ export default function Home() {
       </section>
 
       {/* ⑤ CTA · 全宽黄底面板 */}
-      <section className="cta-panel">
+      <section className="cta-panel editorial-cta">
         <div className="wrap">
           <Reveal>
             <span className="sec-num">03</span>
@@ -163,7 +180,7 @@ export default function Home() {
               <a className="btn btn-ink" href="/contact/">
                 去乘车指南 →
               </a>
-              <a className="btn-ghost" href="mailto:1214242386@qq.com">
+              <a className="btn-ghost" href="mailto:wangc98316@gmail.com">
                 发邮件唠两句
               </a>
             </div>

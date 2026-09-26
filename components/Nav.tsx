@@ -16,11 +16,12 @@ function norm(p: string) {
 
 export default function Nav() {
   const pathname = norm(usePathname() || "/");
+  if (pathname.startsWith("/design-options")) return null;
   return (
-    <nav className="nav">
+    <nav className="nav" aria-label="主导航">
       <div className="nav-inner">
         <Link className="nav-logo" href="/">
-          <span className="dot" />
+          <span className="dot" aria-hidden="true" />
           <b>大巴Bus</b>
           <span className="route">ROUTE 01</span>
         </Link>
@@ -30,6 +31,7 @@ export default function Nav() {
               key={l.href}
               href={l.href}
               className={pathname === norm(l.href) ? "active" : ""}
+              aria-current={pathname === norm(l.href) ? "page" : undefined}
             >
               {l.label}
             </Link>

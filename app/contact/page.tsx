@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = { title: "乘车指南" };
@@ -36,22 +37,22 @@ const stops = [
   {
     no: "NO.005",
     name: "邮箱直通车",
-    handle: "1214242386@qq.com",
+    handle: "wangc98316@gmail.com",
     note: "合作、建议、唠嗑都欢迎，看到就会回。",
-    href: "mailto:1214242386@qq.com",
+    href: "mailto:wangc98316@gmail.com",
   },
 ];
 
 export default function Contact() {
   return (
-    <main>
-      <div className="wrap page-head">
+    <main id="main-content" className="editorial-page editorial-contact">
+      <div className="wrap page-head editorial-page-head">
         <span className="label-caps">Tickets · Boarding</span>
         <h1>乘车指南</h1>
         <p className="hand">五条上车通道，挑一条顺眼的。</p>
       </div>
 
-      <section style={{ paddingTop: "1rem" }}>
+      <section className="editorial-contact-section">
         <div className="wrap">
           <div className="tickets">
             {stops.map((s, i) => {
@@ -84,6 +85,10 @@ export default function Contact() {
           <p className="ticket-note">
             * 平台主页直达链接整理中，现阶段用站名搜索最稳；邮箱那一站是直达的。
           </p>
+          <div className="editorial-contact-next">
+            <p>第一次来？先从首页认识这趟车。</p>
+            <Link href="/">回到始发站 <span aria-hidden="true">↗</span></Link>
+          </div>
         </div>
       </section>
     </main>

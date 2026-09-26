@@ -1,6 +1,12 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname() || "/";
+  if (pathname.startsWith("/design-options")) return null;
+
   return (
     <footer>
       <div className="wrap">
@@ -29,7 +35,7 @@ export default function Footer() {
               <li><span className="plat">抖音</span>大巴bus</li>
               <li>
                 <span className="plat">邮箱</span>
-                <a href="mailto:1214242386@qq.com">1214242386@qq.com</a>
+                <a href="mailto:wangc98316@gmail.com">wangc98316@gmail.com</a>
               </li>
             </ul>
           </div>
