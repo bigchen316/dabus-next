@@ -2,7 +2,7 @@
   "name": "dabus-next",
   "version": "1.0.0",
   "private": true,
-  "description": "大巴Bus 个人站 · Next.js 版 · 遵循《大巴设计规范 v1.0》",
+  "description": "大巴Bus 个人站 · Next.js 版 · 遵循《大巴设计规范 v1.1》",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
