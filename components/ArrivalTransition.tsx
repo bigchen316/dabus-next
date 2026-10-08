@@ -12,6 +12,8 @@ export default function ArrivalTransition() {
   const [isLeaving, setIsLeaving] = useState(false);
 
   useEffect(() => {
+    setIsLeaving(false);
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setIsLeaving(true);
       return;

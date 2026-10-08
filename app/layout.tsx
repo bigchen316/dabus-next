@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
+import ArrivalTransition from "../components/ArrivalTransition";
 
 export const metadata: Metadata = {
   title: {
@@ -33,6 +34,7 @@ export default function RootLayout({
       </head>
       <body>
         <a className="skip-link" href="#main-content">跳到主要内容</a>
+        <ArrivalTransition />
         <Nav />
         {children}
         <Footer />
