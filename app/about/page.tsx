@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Reveal from "@/components/Reveal";
-import DabaAvatar from "@/components/DabaAvatar";
+import Reveal from "../../components/Reveal";
+import DabaAvatar from "../../components/DabaAvatar";
 import Link from "next/link";
 
 export const metadata: Metadata = { title: "司机档案" };

@@ -1,5 +1,5 @@
-import Reveal from "@/components/Reveal";
-import DabaAvatar from "@/components/DabaAvatar";
+import Reveal from "../components/Reveal";
+import DabaAvatar from "../components/DabaAvatar";
 import Link from "next/link";
 
 export default function Home() {

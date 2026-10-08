@@ -7,9 +7,9 @@ export const metadata: Metadata = {
 };
 
 const options = [
-  { id: "station", no: "01", name: "硬派站牌", english: "BOLD BUS STOP", text: "黑底与交通黄强碰撞，像一张大巴主题的城市海报。大胆、醒目、记忆点最强。", colors: ["#1a1a1a", "#ffc400", "#00c853"], mark: "大巴\n正在发车" },
-  { id: "editorial", no: "02", name: "公路编辑部", english: "ROAD JOURNAL", text: "大标题、杂志式留白和绿色路线标记。更像一个持续更新、有观点的个人内容品牌。", colors: ["#fefcf6", "#1a1a1a", "#00c853"], mark: "把复杂的\n讲成人话" },
-  { id: "signal", no: "03", name: "夜间信号台", english: "NIGHT SIGNAL", text: "深色控制台配信号绿和交通黄。科技氛围更浓，适合突出 AI 工具和实测内容。", colors: ["#151821", "#00c853", "#ffc400"], mark: "AI TOOL\nSIGNAL ON" },
+  { id: "station", no: "01", name: "硬派站牌", english: "BOLD BUS STOP", text: "把网站做成一块醒目的城市发车牌：黑底、交通黄大色块、绿色站点灯。", structure: "发车牌 / 路线列表", bestFor: "想要第一眼记住你", colors: ["#1a1a1a", "#ffc400", "#00c853"], mark: "大巴\n正在发车" },
+  { id: "editorial", no: "02", name: "公路编辑部", english: "ROAD JOURNAL", text: "用杂志式留白、栏目分栏和绿色路线标记，突出持续更新的内容感。", structure: "杂志跨页 / 观点叙事", bestFor: "想长期经营个人品牌", colors: ["#fefcf6", "#1a1a1a", "#00c853"], mark: "把复杂的\n讲成人话" },
+  { id: "signal", no: "03", name: "夜间信号台", english: "NIGHT SIGNAL", text: "用深色控制台、状态灯和日志流组织内容，突出 AI 工具与实测。", structure: "控制台 / 信号日志", bestFor: "想强化 AI 科技气质", colors: ["#151821", "#00c853", "#ffc400"], mark: "AI TOOL\nSIGNAL ON" },
 ];
 
 export default function DesignOptions() {
@@ -17,12 +17,12 @@ export default function DesignOptions() {
     <main id="main-content" className="options-page">
       <header className="options-header">
         <Link href="/">← 回到大巴个人站</Link>
-        <span>BRAND COLORS · 3 DESIGN DIRECTIONS</span>
+        <span>BRAND COLORS · 3 DESIGN DIRECTIONS · <Link href="/design-options/ip-lab/">IP LAB ↗</Link></span>
       </header>
       <section className="options-intro">
         <span className="label-caps">DA BA · DESIGN STUDIES</span>
         <h1>同一辆大巴，<br /><span>三种开法。</span></h1>
-        <p>围绕交通黄、柏油黑、信号绿，重新设计现有个人站。三版都保留你的真实定位、IP 形象和首篇文章，重点比较视觉方向与内容呈现。</p>
+        <p>围绕交通黄、柏油黑、信号绿，重新设计现有个人站。三版都保留你的真实定位、无眼镜 IP 形象、三条内容线路和首篇文章，但用不同的骨架组织首页与后续页面。</p>
         <div className="options-palette" aria-label="品牌三色">
           <span><i style={{ backgroundColor: "#ffc400" }} />交通黄 · #FFC400</span>
           <span><i style={{ backgroundColor: "#1a1a1a" }} />柏油黑 · #1A1A1A</span>
@@ -42,13 +42,14 @@ export default function DesignOptions() {
               <span className="option-number">方向 {option.no} / {option.english}</span>
               <h2>{option.name}</h2>
               <p>{option.text}</p>
+              <div className="option-card-meta"><span><small>结构</small>{option.structure}</span><span><small>适合</small>{option.bestFor}</span></div>
               <Link href={`/design-options/${option.id}/`}>查看完整首页方案 <span aria-hidden="true">↗</span></Link>
             </div>
           </article>
         ))}
       </section>
       <footer className="options-footer">
-        <p>这是三种可浏览的设计提案。选中方向后，再把它应用到正式首页与其余页面。</p>
+        <p>三版共享同一套内容和品牌三色，只改变构图、密度、字体关系与内容呈现方式。想暂时跳出这套规范，也可以去看 <Link href="/design-options/ip-lab/">IP 自由探索稿 ↗</Link>。</p>
         <Link href="/">先回当前网站 →</Link>
       </footer>
     </main>

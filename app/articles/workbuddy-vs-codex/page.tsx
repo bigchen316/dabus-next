@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Reveal from "@/components/Reveal";
+import Reveal from "../../../components/Reveal";
 
 export const metadata: Metadata = {
   title: "同一个个人站，两轮 AI 协作：从 Work Buddy 到 Codex",
