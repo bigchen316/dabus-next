@@ -4,48 +4,82 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 /**
- * 夜行大巴到站转场：大巴驶入、刹停、开门，IP 下车后把页面交给访客。
- * 设计提案页不套用这段品牌转场，避免干扰方向比较。
+ * 页面内常驻的夜行路线：小巴从 A 站驶向 C 站，IP 在终点下车并戴上头套。
+ * 设计提案页不套用，避免干扰方向比较。
  */
 export default function ArrivalTransition() {
   const pathname = usePathname() || "/";
-  const [isLeaving, setIsLeaving] = useState(false);
+  const [isArrived, setIsArrived] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
-    setIsLeaving(false);
+    setIsArrived(false);
+    setIsHidden(false);
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setIsLeaving(true);
+      setIsArrived(true);
       return;
     }
 
-    const timer = window.setTimeout(() => setIsLeaving(true), 2550);
+    const timer = window.setTimeout(() => setIsArrived(true), 12000);
     return () => window.clearTimeout(timer);
   }, [pathname]);
 
   if (pathname.startsWith("/design-options")) return null;
 
+  if (isHidden) {
+    return (
+      <button className="journey-peek" type="button" onClick={() => setIsHidden(false)}>
+        <span aria-hidden="true">●</span> 显示路线
+      </button>
+    );
+  }
+
   return (
-    <div className={`arrival-transition${isLeaving ? " is-leaving" : ""}`} role="status" aria-label="大巴正在到站">
-      <div className="arrival-sky" aria-hidden="true"><i /><i /><i /><i /><i /></div>
-      <div className="arrival-copy">
-        <span>DA BA NIGHT BUS / ARRIVAL</span>
-        <strong>下一站，<em>到了。</em></strong>
-        <small>欢迎下车，慢慢看。</small>
+    <aside
+      className={`route-journey${isArrived ? " is-arrived" : ""}`}
+      role="status"
+      aria-label={isArrived ? "大巴已到站，IP 已戴上头套" : "大巴正在沿路线行驶"}
+    >
+      <div className="journey-card">
+        <div className="journey-topline">
+          <div>
+            <span className="journey-kicker">DA BA NIGHT BUS / LIVE ROUTE</span>
+            <strong>{isArrived ? "到站了，戴上头套。" : "跟着我，慢慢开。"}</strong>
+          </div>
+          <button className="journey-hide" type="button" onClick={() => setIsHidden(true)} aria-label="收起路线">
+            ×
+          </button>
+        </div>
+
+        <div className="journey-track" aria-hidden="true">
+          <span className="journey-stop journey-stop--a"><b>A</b><small>始发</small></span>
+          <span className="journey-stop journey-stop--b"><b>B</b><small>途中</small></span>
+          <span className="journey-stop journey-stop--c"><b>C</b><small>到站</small></span>
+          <div className="journey-vehicle">
+            <div className="journey-mini-bus">
+              <div className="journey-mini-top"><span>DA BA</span><b>夜行 01</b></div>
+              <div className="journey-mini-window"><img src="/avatars/daba-headphones-listening.png" alt="" /></div>
+              <div className="journey-mini-body">
+                <span className="journey-mini-headlight" />
+                <span className="journey-mini-door"><i /><i /><i /></span>
+                <span className="journey-mini-line" />
+              </div>
+              <span className="journey-mini-wheel journey-mini-wheel--one" />
+              <span className="journey-mini-wheel journey-mini-wheel--two" />
+            </div>
+            <div className="journey-driver">
+              <img src="/avatars/daba-headphones-wave.png" alt="" />
+              <span>戴上头套</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="journey-footer">
+          <span>司机：大巴 IP</span>
+          <span>{isArrived ? "STOP C / ARRIVED" : "A → B → C / MOVING"}</span>
+        </div>
       </div>
-      <div className="arrival-route" aria-hidden="true">
-        <span className="arrival-route-stop">A</span><i /><span className="arrival-route-stop">B</span><i /><span className="arrival-route-stop is-current">C</span>
-      </div>
-      <div className="arrival-road" aria-hidden="true"><i /><i /><i /><i /><i /><i /></div>
-      <div className="arrival-bus" aria-hidden="true">
-        <div className="arrival-bus-top"><span>DA BA</span><b>夜行 01</b></div>
-        <div className="arrival-bus-window"><img src="/avatars/daba-headphones-listening.png" alt="" /></div>
-        <div className="arrival-bus-body"><span className="arrival-headlight" /><span className="arrival-door"><i /><i /><i /></span><span className="arrival-bus-line" /></div>
-        <span className="arrival-wheel arrival-wheel--one" /><span className="arrival-wheel arrival-wheel--two" />
-        <span className="arrival-bus-light" />
-      </div>
-      <div className="arrival-walker" aria-hidden="true"><img src="/avatars/daba-headphones-wave.png" alt="" /><span>到站了</span></div>
-      <button className="arrival-skip" type="button" onClick={() => setIsLeaving(true)}>跳过到站动画 ↗</button>
-    </div>
+    </aside>
   );
 }
