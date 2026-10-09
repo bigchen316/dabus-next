@@ -1138,17 +1138,17 @@ footer { position: relative; }
 footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--green); }
 .f-list a { transition: color .2s ease, border-color .2s ease; }
 .daba-cat-sprite { position: relative; display: block; width: 144px; height: 177px; overflow: hidden; flex: 0 0 auto; }
-.daba-cat-sprite-frame { position: absolute; inset: 0; display: block; background-image: url('/avatars/daba-cat-bus-sheet.png'); background-repeat: no-repeat; background-size: 432px 177px; background-position: -144px 0; }
-.daba-cat-sprite.is-animated .daba-cat-sprite-frame { animation: daba-cat-frame 1.8s steps(1, end) infinite; }
+.daba-cat-sprite-sheet { position: absolute; top: 0; left: -144px; display: block; width: 576px; max-width: none; height: 177px; object-fit: fill; }
+.daba-cat-sprite.is-animated .daba-cat-sprite-sheet { animation: daba-cat-frame 1.8s steps(1, end) infinite; }
 .page-transition { animation: page-enter .48s cubic-bezier(.22,.75,.25,1) both; }
 .page-jump-layer { position: fixed; z-index: 260; inset: 0; overflow: hidden; pointer-events: none; opacity: 0; }
 .page-transition--jumping .page-jump-layer { opacity: 1; }
 .page-jump-sprite { position: absolute; left: -11rem; bottom: 8vh; transform: scale(.8); transform-origin: center bottom; filter: drop-shadow(0 12px 8px rgba(26,26,26,.2)); animation: page-jump-travel 1.05s cubic-bezier(.2,.8,.2,1) both; }
 @keyframes page-enter { from { opacity: .78; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes daba-cat-frame {
-  0%, 31% { background-position: 0 0; }
-  32%, 64% { background-position: -144px 0; }
-  65%, 100% { background-position: -288px 0; }
+  0%, 31% { transform: translateX(0); }
+  32%, 64% { transform: translateX(-144px); }
+  65%, 100% { transform: translateX(-288px); }
 }
 @keyframes page-jump-travel {
   0% { left: -11rem; transform: translateY(0) rotate(-4deg) scale(.8); }
@@ -1161,7 +1161,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 @media (prefers-reduced-motion: reduce) {
   .page-transition { animation: none; }
   .page-jump-layer { display: none; }
-  .daba-cat-sprite.is-animated .daba-cat-sprite-frame { animation: none; }
+  .daba-cat-sprite.is-animated .daba-cat-sprite-sheet { animation: none; }
   .nav, .nav-logo .dot, .nav-links a, .nav-links a::after, .ticket, .feature-article, .route-card { transition-duration: .01ms !important; }
 }
 @media (max-width: 960px) {

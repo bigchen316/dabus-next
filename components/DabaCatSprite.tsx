@@ -19,7 +19,13 @@ export default function DabaCatSprite({
       role="img"
       aria-label={label}
     >
-      <span className="daba-cat-sprite-frame" aria-hidden="true" />
+      <img
+        className="daba-cat-sprite-sheet"
+        src="/avatars/daba-cat-bus-sheet.png"
+        alt=""
+        aria-hidden="true"
+        draggable="false"
+      />
     </span>
   );
 }
