@@ -1157,7 +1157,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 /* ===== 首页一页式驾驶舱 ===== */
 body:has(.editorial-home-one-page) { overflow: hidden; }
 .editorial-home-one-page { height: 100svh; min-height: 540px; overflow: hidden; }
-.home-deck { box-sizing: border-box; height: 100%; max-width: var(--content-max); margin: 0 auto; padding: clamp(5.4rem, 10vh, 7rem) var(--page-pad) 6.3rem; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: clamp(1rem, 2.4vh, 2rem); }
+.home-deck { box-sizing: border-box; height: 100%; max-width: var(--content-max); margin: 0 auto; padding: clamp(5.4rem, 10vh, 7rem) var(--page-pad) 9rem; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: clamp(1rem, 2.4vh, 2rem); }
 .home-deck-topline { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .home-live { color: var(--green); font: 700 .62rem var(--mono); letter-spacing: .1em; white-space: nowrap; }
 .home-live i { display: inline-block; width: 7px; height: 7px; margin-right: .35rem; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 3px rgba(0,200,83,.14); }
@@ -1192,7 +1192,7 @@ body:has(.editorial-home-one-page) { overflow: hidden; }
 .home-deck-route p { margin-top: .35rem; color: var(--ink-light); font-size: clamp(.65rem, .85vw, .78rem); line-height: 1.45; }
 @media (max-width: 760px) {
   .editorial-home-one-page { min-height: 500px; }
-  .home-deck { padding: 4.8rem .9rem 5.9rem; gap: .6rem; }
+  .home-deck { padding: 4.8rem .9rem 8.6rem; gap: .6rem; }
   .home-deck-topline { align-items: flex-start; }
   .home-deck-topline .label-caps { font-size: .55rem; }
   .home-live { font-size: .5rem; }
