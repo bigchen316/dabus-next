@@ -26,7 +26,7 @@ export default function ArrivalTransition() {
     return () => window.clearTimeout(timer);
   }, [pathname]);
 
-  if (pathname.startsWith("/design-options")) return null;
+  if (pathname === "/" || pathname.startsWith("/design-options")) return null;
 
   if (isHidden) {
     return (

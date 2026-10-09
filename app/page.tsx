@@ -1,5 +1,4 @@
 import Reveal from "../components/Reveal";
-import DabaAvatar from "../components/DabaAvatar";
 import Link from "next/link";
 
 const routes = [
@@ -54,14 +53,19 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="home-deck-visual">
+          <div className="home-deck-visual home-deck-route-mark" aria-label="大巴内容路线">
             <Reveal>
-              <figure className="bus-window">
-                <DabaAvatar />
-                <figcaption>司机本巴，正在发车</figcaption>
-              </figure>
+              <div className="home-deck-route-mark-inner">
+                <span className="home-deck-route-mark-kicker">DA BA / NIGHT ROUTE</span>
+                <strong>内容在路上，<br /><em>不用露脸。</em></strong>
+                <p>AI 工具、效率折腾和动漫日常，沿着同一条个人路线发车。</p>
+                <div className="home-deck-route-map" aria-hidden="true">
+                  <span><b>A</b> START</span>
+                  <i />
+                  <span><b>C</b> NEXT STOP</span>
+                </div>
+              </div>
             </Reveal>
-            <span className="home-deck-stamp">本人驾驶<br /><b>安心上车</b></span>
           </div>
         </div>
 
