@@ -1138,7 +1138,7 @@ footer { position: relative; }
 footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--green); }
 .f-list a { transition: color .2s ease, border-color .2s ease; }
 .daba-cat-sprite { position: relative; display: block; width: 144px; height: 177px; overflow: hidden; flex: 0 0 auto; }
-.daba-cat-sprite-sheet { position: absolute; top: 0; left: -144px; display: block; width: 576px; max-width: none; height: 177px; object-fit: fill; }
+.daba-cat-sprite-sheet { position: absolute; top: 0; left: 0; display: block; width: 576px; max-width: none; height: 177px; object-fit: fill; }
 .daba-cat-sprite.is-animated .daba-cat-sprite-sheet { animation: daba-cat-frame 1.8s steps(1, end) infinite; }
 .page-transition { animation: page-enter .48s cubic-bezier(.22,.75,.25,1) both; }
 .page-jump-layer { position: fixed; z-index: 260; inset: 0; overflow: hidden; pointer-events: none; opacity: 0; }
