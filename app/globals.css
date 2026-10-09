@@ -732,6 +732,13 @@ footer { background: var(--ink); color: #cfcfcf; padding: clamp(56px, 8vh, 80px)
 .journey-stop small { font: .55rem var(--sans); white-space: nowrap; }
 .journey-stop--c b { color: #141326; border-color: #fff1a8; background: #fff1a8; box-shadow: 0 0 15px rgba(255,241,168,.4); }
 .journey-vehicle { position: absolute; z-index: 4; top: .05rem; left: 2%; width: 13rem; height: 3.35rem; animation: journey-drive 12s cubic-bezier(.2,.8,.2,1) both; }
+.journey-cat { position: absolute; z-index: 6; left: -2.35rem; bottom: -.08rem; width: 3.15rem; transform: translateY(0); transition: transform .7s cubic-bezier(.2,.8,.2,1); }
+.black-cat { display: block; width: 100%; overflow: visible; }
+.black-cat-body { animation: black-cat-bob .9s ease-in-out infinite; transform-origin: 70px 75px; }
+.black-cat-tail { animation: black-cat-tail 1.25s ease-in-out infinite; transform-origin: 31px 61px; }
+.black-cat-arm { transform-origin: 101px 71px; }
+.route-journey.is-arrived .journey-cat { transform: translateY(-.18rem) rotate(-3deg); }
+.route-journey.is-arrived .black-cat-arm { animation: black-cat-wave .78s ease-in-out 2; }
 .journey-mini-bus { position: absolute; left: 0; bottom: .1rem; width: 8rem; height: 3.35rem; color: #141326; }
 .journey-mini-top { position: absolute; left: .45rem; right: .05rem; top: 0; height: 1rem; display: flex; align-items: center; justify-content: space-between; padding: 0 .5rem; border: 2px solid #141326; border-bottom: 0; border-radius: 16px 16px 0 0; background: #d95cdd; font: 900 .46rem var(--sans); }
 .journey-mini-top b { font: .42rem var(--mono); }
@@ -761,11 +768,15 @@ footer { background: var(--ink); color: #cfcfcf; padding: clamp(56px, 8vh, 80px)
   86%, 100% { left: calc(100% - 13rem); transform: translateY(0) rotate(0); }
 }
 @keyframes journey-stop-pulse { 0%, 100% { box-shadow: 0 0 15px rgba(255,241,168,.4); } 45% { box-shadow: 0 0 0 8px rgba(255,241,168,0), 0 0 22px rgba(255,241,168,.85); } }
+@keyframes black-cat-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.5px); } }
+@keyframes black-cat-tail { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(9deg); } }
+@keyframes black-cat-wave { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-22deg) translate(-1px, -2px); } }
 @media (max-width: 640px) {
   .route-journey { bottom: .65rem; width: calc(100vw - 1rem); }
   .journey-card { padding: .7rem .7rem .55rem; border-radius: 14px; }
   .journey-track { height: 4.35rem; }
   .journey-vehicle { width: 10.5rem; animation-name: journey-drive-mobile; }
+  .journey-cat { left: -1.85rem; width: 2.65rem; }
   .journey-mini-bus { transform: scale(.86); transform-origin: left bottom; }
   .journey-driver { width: 3.9rem; right: -.1rem; }
   .journey-driver span { right: -.7rem; }
@@ -778,6 +789,7 @@ footer { background: var(--ink); color: #cfcfcf; padding: clamp(56px, 8vh, 80px)
 }
 @media (prefers-reduced-motion: reduce) {
   .journey-vehicle { animation: none; left: calc(100% - 13rem); transform: none; }
+  .journey-cat, .black-cat-body, .black-cat-tail, .black-cat-arm { animation: none; transition: none; }
   .journey-mini-door { transform: rotateY(-62deg); }
   .journey-driver { opacity: 1; transform: none; transition: none; }
   .journey-stop--c b { animation: none; }

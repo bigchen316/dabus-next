@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import BlackCat from "./BlackCat";
 
 /**
  * 页面内常驻的夜行路线：小巴从 A 站驶向 C 站，IP 在终点下车并戴上头套。
@@ -57,6 +58,7 @@ export default function ArrivalTransition() {
           <span className="journey-stop journey-stop--b"><b>B</b><small>途中</small></span>
           <span className="journey-stop journey-stop--c"><b>C</b><small>到站</small></span>
           <div className="journey-vehicle">
+            <div className="journey-cat"><BlackCat isArrived={isArrived} /></div>
             <div className="journey-mini-bus">
               <div className="journey-mini-top"><span>DA BA</span><b>夜行 01</b></div>
               <div className="journey-mini-window"><img src="/avatars/daba-headphones-listening.png" alt="" /></div>

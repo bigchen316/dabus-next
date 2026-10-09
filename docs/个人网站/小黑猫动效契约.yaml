@@ -1,0 +1,26 @@
+subject_count: 1
+subjects:
+  - identity: "黑色圆脸小猫，紫色耳内，黄色小围巾，白色眼睛高光"
+style: "夜行大巴路线条里的扁平手绘角色"
+motion_intent: "小黑猫跟着小巴移动，保持轻微身体起伏和尾巴摆动；到达 C 站后抬头挥爪"
+background_owner: page
+scene: "页面底部常驻路线窗，猫位于小巴左侧，不能遮挡正文"
+driver: time
+input_semantics: autonomous
+time_control: autonomous
+navigation: continuous
+clip_continuity: independent
+continuity:
+  - "黑色主体、紫色耳内和黄色小围巾保持一致"
+  - "猫始终与 A → B → C 路线同向移动"
+  - "到站状态停留，不循环重新出发"
+aspect_ratio: custom
+destination: "components/ArrivalTransition.tsx 的常驻路线窗，桌面与移动端"
+storyboard:
+  - "K0：A 站出发，猫贴着小巴轻微晃动"
+  - "K1：B 站途中，尾巴保持自然摆动"
+  - "K2：C 站到达，猫抬头并挥爪"
+rest_state: "正常动态下自动行驶；prefers-reduced-motion 下直接显示 C 站静止状态"
+loop: none
+anchor: bottom
+reduced_motion: "显示小巴、猫和 IP 的最终到站画面，不播放位移、起伏和挥爪"
