@@ -1,0 +1,26 @@
+subject_count: 1
+subjects:
+  - identity: "黄色黑边小巴，车顶趴着一只戴黑色巫师帽的小黑猫"
+style: "用户提供的手绘四格素材，保留纸张纹理、黑色线稿、黄色车身和绿色手机"
+motion_intent: "首页稳定展示小巴与小猫；跳页时角色从左向右连续跳跃，像跟着访客一起换站"
+background_owner: page
+scene: "首页右侧路线卡与全站页面切换层"
+driver: "page-mount"
+input_semantics: autonomous
+time_control: autonomous
+navigation: route-transition
+clip_continuity: independent
+continuity:
+  - "首页、转场共用同一份四格素材"
+  - "只使用前三格，避开原图右下角水印"
+  - "小猫与小巴保持同一水平锚点，不覆盖标题和按钮"
+aspect_ratio: custom
+destination: "app/page.tsx 与 app/template.tsx"
+storyboard:
+  - "K0：小巴停在首页路线卡，猫保持清晰可读的休息姿态"
+  - "K1：页面切换开始，猫和小巴起跳，使用第二格形成腾空感"
+  - "K2：角色落地并离开右侧，页面内容完成进入"
+rest_state: "首页使用轻微三格循环；非动画环境固定在中间帧"
+loop: "首页循环；跳页单次"
+anchor: "首页右侧路线卡 / 页面底部跳跃轨迹"
+reduced_motion: "隐藏页面跳跃层，角色停在稳定帧，不播放逐帧和位移动画"

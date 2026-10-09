@@ -1,4 +1,5 @@
 import Reveal from "../components/Reveal";
+import DabaCatSprite from "../components/DabaCatSprite";
 import Link from "next/link";
 
 const routes = [
@@ -56,6 +57,7 @@ export default function Home() {
           <div className="home-deck-visual home-deck-route-mark" aria-label="大巴内容路线">
             <Reveal>
               <div className="home-deck-route-mark-inner">
+                <DabaCatSprite animated label="头顶小猫的大巴形象" />
                 <span className="home-deck-route-mark-kicker">DA BA / NIGHT ROUTE</span>
                 <strong>内容在路上，<br /><em>不用露脸。</em></strong>
                 <p>AI 工具、效率折腾和动漫日常，沿着同一条个人路线发车。</p>
