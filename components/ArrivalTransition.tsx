@@ -26,7 +26,12 @@ export default function ArrivalTransition() {
     return () => window.clearTimeout(timer);
   }, [pathname]);
 
-  if (pathname === "/" || pathname.startsWith("/design-options")) return null;
+  if (
+    pathname === "/" ||
+    pathname === "/about" ||
+    pathname === "/about/" ||
+    pathname.startsWith("/design-options")
+  ) return null;
 
   if (isHidden) {
     return (
