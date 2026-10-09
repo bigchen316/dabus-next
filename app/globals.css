@@ -873,6 +873,15 @@ footer { background: var(--ink); color: #cfcfcf; padding: clamp(56px, 8vh, 80px)
 .editorial-about .editorial-profile-section { padding-top: clamp(2.5rem, 6vh, 5rem) !important; }
 .editorial-about .about-grid { grid-template-columns: .82fr 1.18fr; gap: clamp(52px, 9vw, 128px); align-items: center; }
 .editorial-about .about-grid > .reveal:first-child { max-width: 430px; }
+.driver-slate { min-height: 300px; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(1.5rem, 4vw, 2.8rem); border: 1px solid rgba(26,26,26,.22); border-left: 6px solid var(--green); background: var(--editorial-warm); box-shadow: 18px 18px 0 var(--yellow); }
+.driver-slate-kicker { color: var(--ink-faint); font: 700 .65rem var(--mono); letter-spacing: .14em; }
+.driver-slate strong { color: var(--ink); font: 900 clamp(3rem, 7vw, 5.7rem)/.88 var(--serif); letter-spacing: -.08em; }
+.driver-slate strong em { display: block; color: var(--green); font-style: italic; }
+.driver-slate-route { display: grid; grid-template-columns: auto 1fr auto 1fr auto; align-items: center; gap: .45rem; color: var(--ink-faint); font: 700 .5rem var(--mono); letter-spacing: .06em; }
+.driver-slate-route span { display: grid; gap: .3rem; justify-items: center; }
+.driver-slate-route b { display: grid; place-items: center; width: 1.45rem; height: 1.45rem; border: 1px solid var(--ink); border-radius: 50%; color: var(--ink); background: var(--yellow); font-size: .6rem; }
+.driver-slate-route i { height: 1px; background: var(--ink); opacity: .35; }
+.driver-slate p { color: var(--ink-light); font: 600 .72rem var(--mono); letter-spacing: .04em; }
 .editorial-about .about-text { padding-left: clamp(22px, 4vw, 52px); border-left: 3px solid var(--green); }
 .editorial-about .about-text p { font-size: 1.02rem; line-height: 1.95; }
 .editorial-about .about-text p:first-child { font-size: clamp(1.15rem, 2vw, 1.4rem); color: var(--ink); }
@@ -1157,6 +1166,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 88px; }
   .editorial-page-head h1 { font-size: clamp(3rem, 14vw, 4.8rem); }
   .editorial-about .about-grid { grid-template-columns: 1fr; gap: 3rem; }
   .editorial-about .about-grid > .reveal:first-child { width: 82%; justify-self: center; }
+  .driver-slate { min-height: 220px; padding: 1.2rem; box-shadow: 10px 10px 0 var(--yellow); }
   .editorial-about .about-text { padding-left: 1.2rem; }
   .editorial-next-inner { grid-template-columns: 1fr; gap: .8rem; }
   .editorial-next-inner .btn { grid-column: auto; }

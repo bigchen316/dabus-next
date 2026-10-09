@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Reveal from "../../components/Reveal";
-import DabaAvatar from "../../components/DabaAvatar";
 import Link from "next/link";
 
 export const metadata: Metadata = { title: "司机档案" };
@@ -14,14 +13,22 @@ export default function About() {
         <p className="hand">本车由大巴亲自驾驶，请放心上车。</p>
       </div>
 
-      {/* 司机自介 · 左车窗右文字 */}
+      {/* 司机自介 · 左路线右文字 */}
       <section className="editorial-profile-section">
         <div className="wrap about-grid">
           <Reveal>
-            <figure className="bus-window">
-              <DabaAvatar />
-              <figcaption>大巴 · 耳机抱臂版</figcaption>
-            </figure>
+            <div className="driver-slate" aria-label="大巴司机信息">
+              <span className="driver-slate-kicker">DRIVER / NO.001</span>
+              <strong>大巴<em>Bus</em></strong>
+              <div className="driver-slate-route" aria-hidden="true">
+                <span><b>A</b> AI</span>
+                <i />
+                <span><b>B</b> WORK</span>
+                <i />
+                <span><b>C</b> ANIME</span>
+              </div>
+              <p>普通上班族 · 内容驾驶中</p>
+            </div>
           </Reveal>
           <Reveal delay={0.1}>
             <div className="about-text">
