@@ -1,23 +1,31 @@
+"use client";
+
+import { useState } from "react";
+
 type DabaCatSpriteProps = {
   animated?: boolean;
   className?: string;
   label?: string;
 };
 
-/**
- * 四格小巴素材的轻量逐帧角色：保留原图笔触，不引入视频或复杂运行时。
- * 只取前三格，避开原素材右下角的水印区域。
- */
+/** 四帧手绘素材：睡着 → 耳朵抖动 → 半醒 → 睁眼。点击角色会跳一下。 */
 export default function DabaCatSprite({
   animated = false,
   className = "",
   label = "头顶小猫的大巴形象",
 }: DabaCatSpriteProps) {
+  const [jumping, setJumping] = useState(false);
+
   return (
-    <span
-      className={`daba-cat-sprite${animated ? " is-animated" : ""}${className ? ` ${className}` : ""}`}
-      role="img"
-      aria-label={label}
+    <button
+      type="button"
+      className={`daba-cat-sprite${animated ? " is-animated" : ""}${jumping ? " is-jumping" : ""}${className ? ` ${className}` : ""}`}
+      aria-label={`${label}，点击让角色跳一下`}
+      onClick={() => {
+        setJumping(false);
+        requestAnimationFrame(() => setJumping(true));
+        window.setTimeout(() => setJumping(false), 700);
+      }}
     >
       <img
         className="daba-cat-sprite-sheet"
@@ -26,6 +34,6 @@ export default function DabaCatSprite({
         aria-hidden="true"
         draggable="false"
       />
-    </span>
+    </button>
   );
 }
