@@ -61,6 +61,7 @@ export default function Home() {
                 <span className="home-deck-route-mark-kicker">DA BA / NIGHT ROUTE</span>
                 <strong>内容在路上，<br /><em>不用露脸。</em></strong>
                 <p>AI 工具、效率折腾和动漫日常，沿着同一条个人路线发车。</p>
+                <p className="home-deck-interaction-note"><b>互动角色</b> 靠近唤醒 · 点击起跳</p>
                 <div className="home-deck-route-map" aria-hidden="true">
                   <span><b>A</b> START</span>
                   <i />

@@ -1,6 +1,6 @@
 "use client";
 
-import { PointerEvent, useEffect, useRef, useState } from "react";
+import { FocusEvent, PointerEvent, useEffect, useRef, useState } from "react";
 
 type DabaCatSpriteProps = {
   animated?: boolean;
@@ -10,7 +10,10 @@ type DabaCatSpriteProps = {
 
 type Mood = "sleeping" | "waking" | "awake";
 
-/** 参考 Meet A 的交互逻辑：靠近唤醒、离开打盹、鼠标跟随、点击跳跃。 */
+/**
+ * 大巴角色的轻量状态机：SVG 舞台承载现有手绘角色，代码只负责状态和运动。
+ * 参考 Meet A 的交互节奏：闲置打盹、靠近唤醒、跟随指针、点击起跳。
+ */
 export default function DabaCatSprite({
   animated = false,
   className = "",
@@ -18,14 +21,31 @@ export default function DabaCatSprite({
 }: DabaCatSpriteProps) {
   const [mood, setMood] = useState<Mood>(animated ? "sleeping" : "awake");
   const [jumping, setJumping] = useState(false);
+  const moodRef = useRef<Mood>(animated ? "sleeping" : "awake");
   const sleepTimer = useRef<number | undefined>(undefined);
+  const wakeTimer = useRef<number | undefined>(undefined);
+  const jumpTimer = useRef<number | undefined>(undefined);
 
-  useEffect(() => () => window.clearTimeout(sleepTimer.current), []);
+  useEffect(() => {
+    return () => {
+      window.clearTimeout(sleepTimer.current);
+      window.clearTimeout(wakeTimer.current);
+      window.clearTimeout(jumpTimer.current);
+    };
+  }, []);
+
+  const setMoodValue = (nextMood: Mood) => {
+    moodRef.current = nextMood;
+    setMood(nextMood);
+  };
 
   const wake = () => {
     window.clearTimeout(sleepTimer.current);
-    setMood((current) => (current === "awake" ? current : "waking"));
-    window.setTimeout(() => setMood("awake"), 1100);
+    if (moodRef.current === "sleeping") {
+      window.clearTimeout(wakeTimer.current);
+      setMoodValue("waking");
+      wakeTimer.current = window.setTimeout(() => setMoodValue("awake"), 1100);
+    }
   };
 
   const handlePointerMove = (event: PointerEvent<HTMLButtonElement>) => {
@@ -38,19 +58,28 @@ export default function DabaCatSprite({
     wake();
   };
 
-  const handlePointerLeave = (event: PointerEvent<HTMLButtonElement>) => {
-    event.currentTarget.style.setProperty("--follow-x", "0px");
-    event.currentTarget.style.setProperty("--follow-y", "0px");
-    event.currentTarget.style.setProperty("--follow-r", "0deg");
+  const scheduleSleep = (button: HTMLButtonElement) => {
+    button.style.setProperty("--follow-x", "0px");
+    button.style.setProperty("--follow-y", "0px");
+    button.style.setProperty("--follow-r", "0deg");
     window.clearTimeout(sleepTimer.current);
-    sleepTimer.current = window.setTimeout(() => setMood("sleeping"), 2200);
+    sleepTimer.current = window.setTimeout(() => setMoodValue("sleeping"), 2200);
+  };
+
+  const settleToSleep = (event: PointerEvent<HTMLButtonElement>) => {
+    scheduleSleep(event.currentTarget);
+  };
+
+  const handleBlur = (event: FocusEvent<HTMLButtonElement>) => {
+    scheduleSleep(event.currentTarget);
   };
 
   const handleJump = () => {
     wake();
+    window.clearTimeout(jumpTimer.current);
     setJumping(false);
     requestAnimationFrame(() => setJumping(true));
-    window.setTimeout(() => setJumping(false), 720);
+    jumpTimer.current = window.setTimeout(() => setJumping(false), 720);
   };
 
   return (
@@ -60,17 +89,35 @@ export default function DabaCatSprite({
       aria-label={`${label}，鼠标靠近会醒来，点击会跳一下`}
       onPointerEnter={wake}
       onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
+      onPointerLeave={settleToSleep}
       onFocus={wake}
+      onBlur={handleBlur}
       onClick={handleJump}
     >
-      <img
-        className="daba-cat-sprite-sheet"
-        src="/avatars/daba-cat-bus-sheet.png"
-        alt=""
+      <svg
+        className="daba-cat-sprite-svg"
+        viewBox="0 0 144 177"
+        role="img"
         aria-hidden="true"
-        draggable="false"
-      />
+        focusable="false"
+      >
+        <g className="daba-cat-sprite-sheet" aria-hidden="true">
+          <image
+            href="/avatars/daba-cat-bus-sheet.png"
+            x="0"
+            y="0"
+            width="576"
+            height="177"
+            preserveAspectRatio="none"
+          />
+        </g>
+        <g className="daba-cat-sprite-ink" aria-hidden="true">
+          <path className="daba-cat-sprite-breath" d="M30 166 C58 171 91 171 116 165" />
+          <path className="daba-cat-sprite-spark" d="M120 34 l6 -5 M125 42 l8 -1" />
+          <text className="daba-cat-sprite-z" x="111" y="26">z</text>
+          <text className="daba-cat-sprite-z daba-cat-sprite-z--two" x="123" y="16">z</text>
+        </g>
+      </svg>
     </button>
   );
 }
