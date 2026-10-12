@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
-import ArrivalTransition from "../components/ArrivalTransition";
 
 export const metadata: Metadata = {
   title: {
@@ -19,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="zh-CN" data-scroll-behavior="smooth">
+    <html lang="zh-CN">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -34,7 +33,6 @@ export default function RootLayout({
       </head>
       <body>
         <a className="skip-link" href="#main-content">跳到主要内容</a>
-        <ArrivalTransition />
         <Nav />
         {children}
         <Footer />
