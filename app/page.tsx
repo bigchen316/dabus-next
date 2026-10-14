@@ -4,7 +4,7 @@ export default function Home() {
   return <main id="main-content" className="home-page">
     <section className="home-hero" aria-labelledby="home-title">
       <div className="home-intro"><h1 id="home-title">和大巴，一起探索 AI。</h1><p>一个普通上班族的实测与日常。</p></div>
-      <DabaIllustration className="home-illustration" priority />
+      <DabaIllustration className="home-illustration" pose="wave" priority />
       <Link className="btn btn-ink" href="/articles/">阅读实测</Link>
     </section>
     <section className="home-latest" aria-label="最新文章">

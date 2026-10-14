@@ -1,6 +1,6 @@
 # C 版：苹果式简洁页面与清爽手绘 IP
 
-更新：2026-10-14。用户已确认 C 版，并授权全站更新与上线。
+更新：2026-10-15。用户已确认 C 版，并授权按内容配置不同静态动作，缺少的动作可以按现有 IP 补画。
 
 ## 视觉
 
@@ -8,7 +8,32 @@
 - 黄色 #FFD233 来自 IP 点缀与当前导航标记，不再铺满品牌三色。
 - 系统无衬线字体，不加载外部字体；短标题、大留白，正文阅读优先。
 - 只有插图带手绘笔触；界面不用撕纸、车票边框、投影、渐变或玻璃。
-- 主素材为 public/illustrations/daba-wave-01.png：24 动作图左上角第一格招手动作，黑发、黑色服装、黄色点缀、不戴眼镜。所有页面复用同一份静态素材。此前小巴与黑猫插图保留为历史素材，不再用于共用 IP。
+- 角色身份统一，动作按语境选择，不再每页都用同一张招手图。黑发、黑黄服装、不戴眼镜、二维手绘质感必须保持。
+- 首页保留 daba-wave-01.png；其余已有动作由 daba-ip-24-actions.png 在页面中分区呈现，不重画原角色，只加载一份动作表。动作边界集中管理在 components/daba-poses.json。
+- 新增 public/illustrations/daba-laptop.png，用于 AI 项目复盘；电脑、人物和服装保持同一手绘语言。
+- 每处插图都应能解释其作用，同一页不重复动作，不覆盖文字和按钮。正文插图小于页面主视觉，手机优先保证阅读空间。
+
+## 动作与内容
+
+| 位置 | 动作 | 用意 |
+| --- | --- | --- |
+| 首页 | 招手 | 欢迎读者 |
+| 司机档案 | 背包 | 介绍一起出发的人 |
+| 为什么叫大巴 | 乘坐小巴 | 呼应名字与内容路线 |
+| AI 工具实测介绍 | 手机 | 亲手体验工具 |
+| 效率介绍 | 伸展身体 | 把省下的时间还给生活 |
+| 动漫介绍 | 陪黑猫 | 下班后的兴趣与陪伴 |
+| 邮箱入口 | 写字 | 认真写下想聊的事 |
+| 平台账号 | 平板 | 浏览内容与保持联系 |
+| 阅读入口 | 指路 | 指向下一站 |
+| 文章列表 | 阅读 | 进入真实文章 |
+| 项目复盘头图 | 使用电脑 | 真实 AI 与网页工作场景 |
+| 设计起稿内容 | 画本与黑猫 | 展示 IP 设计 |
+| 文章结尾 | 点赞 | 鼓励亲自尝试 |
+| 404 页面 | 望远镜 | 寻找正确页面 |
+| 旧方案归档 | 回望、行走、休息、跑步、思考、跃起、系鞋带、远望 | 各地址动作不同，保留回到正式站的入口 |
+
+不为摆满页面而加图，不将角色做成按钮，不引入动画。
 
 ## 页面
 
@@ -29,5 +54,11 @@
 2026-10-14 更新：使用内置 image_gen，对用户提供的 24 动作图做透明背景提取。提示词：只提取左上角第一格站立微笑招手人物，一只手在画面左侧举起，另一只手插兜；保留原角色面容、黑发黄色笔触、黑色上衣长裤、黄色胸口点缀与白黄鞋，以及二维铅笔漫画质感；保留招手旁的小黄色符号；移除其他 23 个动作、纸张背景和地面笔迹；完整保留头发、举起的手和双鞋，输出真实透明背景，不重新设计，不添加巴士、猫、眼镜、耳机、道具、文字、水印、阴影或三维效果。
 
 ## 设计方法
+
+新增电脑动作由内置 image_gen 生成，参考原 24 动作图。提示词：
+
+```text
+Use case: illustration-story. Make ONE new static 2D hand-drawn IP action for a personal website's AI project-review article. Input sheet is CHARACTER AND STYLE REFERENCE, not an edit target. Use the SAME boy: messy short black hair with yellow strokes, large black oval eyes, small rosy cheeks, black zip hoodie with yellow chest patch, black pants, white-and-yellow sneakers, no glasses or headphones. Match the sheet's pencil/crayon ink texture and proportions faithfully; no glossy surfaces or 3D. New pose: seated at a compact simple desk, focused but smiling, both hands naturally typing on a laptop. Laptop mostly gray-black with a small yellow accent, screen lid visible from a slight front-side angle. Full seated boy and both shoes visible. Only boy, desk and laptop; no cat, bus or extra props. Tightly composed landscape cutout on GENUINE TRANSPARENT alpha background. No scenery, rectangle background, text, symbols, watermark, shadows or animation.
+```
 
 延续 design-taste-frontend 公开版中的短标题、真实内容、主视觉集中、去装饰原则，使用 frontend-design 落地。旧 v1.1 规范已从当前项目删除，可从 Git 历史恢复。本文件是网站唯一现行设计规范；旧探索稿与动效契约均不作为实现依据。

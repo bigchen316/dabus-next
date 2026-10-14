@@ -1,3 +1,29 @@
-export default function DabaIllustration({ className = "", priority = false }: { className?: string; priority?: boolean }) {
-  return <div className={"daba-illustration " + className}><img src="/illustrations/daba-wave-01.png" alt="大巴 IP 的第一个招手动作：黑发少年穿黑色服装，微笑挥手" width="1185" height="1327" loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} decoding="async" /></div>;
+import poses from "./daba-poses.json";
+
+export type DabaPose = keyof typeof poses | "laptop";
+
+export default function DabaIllustration({
+  className = "",
+  priority = false,
+  pose = "wave",
+}: { className?: string; priority?: boolean; pose?: DabaPose }) {
+  const isSheet = pose !== "wave" && pose !== "laptop";
+  const classNames = ["daba-illustration", isSheet ? "daba-illustration--sheet" : "", className].filter(Boolean).join(" ");
+  if (!isSheet) {
+    const laptop = pose === "laptop";
+    return <div className={classNames} data-pose={pose}>
+      <img src={laptop ? "/illustrations/daba-laptop.png" : "/illustrations/daba-wave-01.png"}
+        alt={laptop ? "大巴坐在电脑前，认真实测 AI 和整理项目记录" : "大巴 IP 的第一个招手动作：黑发少年穿黑色服装，微笑挥手"}
+        width={laptop ? 1536 : 1185} height={laptop ? 1024 : 1327}
+        loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} decoding="async" />
+    </div>;
+  }
+  const frame = poses[pose as keyof typeof poses];
+  const clipId = "daba-action-" + pose;
+  return <div className={classNames} data-pose={pose} data-action-number={frame.number}>
+    <svg viewBox={[frame.x, frame.y, frame.w, frame.h].join(" ")} role="img" aria-label={frame.label} focusable="false" preserveAspectRatio="xMidYMid meet">
+      <defs><clipPath id={clipId}><rect x={frame.x} y={frame.y} width={frame.w} height={frame.h} /></clipPath></defs>
+      <image href="/illustrations/daba-ip-24-actions.png" width="1536" height="1024" clipPath={"url(#" + clipId + ")"} />
+    </svg>
+  </div>;
 }

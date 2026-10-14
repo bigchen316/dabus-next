@@ -22,7 +22,7 @@ export default function WorkBuddyVsCodexArticle() {
         <div className="article-meta">
           <span>大巴Bus</span><span>个人项目复盘</span><span>2026.09</span>
         </div>
-        <DabaIllustration className="article-banner" />
+        <DabaIllustration className="article-banner" pose="laptop" />
       </header>
 
       <article className="article-body wrap">
@@ -48,9 +48,10 @@ export default function WorkBuddyVsCodexArticle() {
               早期 IP 也走矢量路线：挡风玻璃当脸，头顶有黄色线路牌，黑色衣服配绿色细节，圆眼镜沿用了参考图的感觉。
               它轮廓简洁，适合放进网页和规范里继续改。
             </p>
-            <div className="article-callout">
-              <b>这一轮留下的价值</b>
-              <p>品牌方向、页面模块和视觉母题先成形，我可以先看整套方案，再决定哪些值得继续做。</p>
+            <div className="article-callout article-callout--illustrated">
+              <DabaIllustration className="callout-illustration" pose="sketch" />
+              <div><b>这一轮留下的价值</b>
+              <p>品牌方向、页面模块和视觉母题先成形，我可以先看整套方案，再决定哪些值得继续做。</p></div>
             </div>
             <p>
               但起稿不等于内容已经准备好。旧稿里的头像还是占位图，文章卡片没有真实文章可读，
@@ -125,6 +126,7 @@ export default function WorkBuddyVsCodexArticle() {
         </Reveal>
 
         <footer className="article-end">
+          <DabaIllustration className="close-illustration" pose="thumbsUp" />
           <span className="chip">下一站 · AI 工具实测</span>
           <p>如果你也在搭个人网站，欢迎来聊聊你卡在哪一站。</p>
           <Link className="btn btn-ink" href="/contact/">去乘车指南 →</Link>

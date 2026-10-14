@@ -7,7 +7,7 @@
 - **Next.js 15**（App Router + TypeScript）
 - **静态导出**（`output: "export"`）— 零服务端依赖，`out/` 目录扔哪都能跑
 - **零 UI 依赖** — 样式全部来自规范 token（CSS 变量），不引 Tailwind / 组件库
-- **统一 IP 形象** — 全站共用 `public/illustrations/daba-wave-01.png`，来自 24 动作图的第一个招手动作
+- **统一 IP、不同动作** — 首页保留招手形象，其余页面和内容区按语境使用 24 动作图；项目复盘新增电脑工作姿势
 
 ## 快速开始
 
@@ -17,14 +17,14 @@ npm run dev        # 开发模式 http://localhost:3000
 npm run serve      # 本地预览 out/ http://localhost:4173
 ```
 
-发布前运行 `npm run build`，再运行 `node scripts/check-c-style.cjs` 与 `node scripts/check-export-links.cjs`。若沙盒限制导致 EPERM，需要在获准的运行环境完成构建。
+发布前运行 `npm run build`，再运行 `node scripts/check-ip-poses.cjs` 与 `node scripts/check-export-links.cjs`。动作检查包含 C 版样式与无动画要求。
 
 ## 页面结构
 
 | 路由 | 内容 | 布局模式 |
 |---|---|---|
 | `/` | 首页：手绘 IP、阅读实测与最新文章 | 单屏、中央主角、白灰页面 |
-| `/about/` | 司机档案：招手 IP、自介与内容方向 | 留白分栏 / 文本内容 |
+| `/about/` | 司机档案：背包 IP、自介与内容方向配图 | 留白分栏 / 文本内容 |
 | `/contact/` | 乘车指南：邮箱与平台账号 | 邮箱入口 / 清晰账号列表 |
 | `/articles/` | 真实文章列表 | 文章主视觉与阅读入口 |
 | `/articles/workbuddy-vs-codex/` | Work Buddy 与 Codex 共同迭代个人网站和 IP 的项目复盘 | 长文 / 横向比较表 |
