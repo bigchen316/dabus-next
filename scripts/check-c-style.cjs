@@ -13,8 +13,9 @@ assert.match(css, /height:calc\(100svh - var\(--nav-height\)\)/);
 for (const file of ["app/page.tsx", "app/about/page.tsx", "app/contact/page.tsx", "app/articles/page.tsx", "app/articles/workbuddy-vs-codex/page.tsx"]) {
   assert.match(read(file), /DabaIllustration/, file + ": shared illustration missing");
 }
-assert.match(read("components/DabaIllustration.tsx"), /\/illustrations\/daba-c-bus.png/);
-const image = fs.readFileSync(path.join(root, "public/illustrations/daba-c-bus.png"));
+assert.match(read("components/DabaIllustration.tsx"), /\/illustrations\/daba-wave-01.png/);
+assert.match(read("components/DabaIllustration.tsx"), /第一个招手动作/);
+const image = fs.readFileSync(path.join(root, "public/illustrations/daba-wave-01.png"));
 assert.equal(image.subarray(1, 4).toString(), "PNG");
 assert.ok([4, 6].includes(image[25]), "PNG must support alpha transparency");
 assert.match(read("components/Nav.tsx"), /\/articles\//);
