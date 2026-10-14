@@ -20,10 +20,9 @@ img { display:block; max-width:100%; }
 .nav-links .active { font-weight:650; text-decoration:underline; text-decoration-color:var(--yellow); text-decoration-thickness:4px; text-underline-offset:8px; }
 .btn { display:inline-flex; justify-content:center; align-items:center; padding:13px 34px; font-size:16px; font-weight:600; line-height:1.5; border-radius:999px; min-height:48px; }
 .btn-ink { color:white; background:var(--ink); }
-.daba-illustration { min-width:0; }
+.daba-illustration { min-width:0; background:transparent; }
 .daba-illustration img { width:100%; height:100%; object-fit:contain; }
 .daba-illustration svg { display:block; width:100%; height:100%; overflow:hidden; }
-.daba-illustration--sheet { mix-blend-mode:multiply; }
 .story-illustration { width:260px; height:180px; margin:0 auto 26px; }
 .topic-list article { display:grid; grid-template-columns:130px 1fr; gap:30px; align-items:center; }
 .topic-illustration { height:145px; }

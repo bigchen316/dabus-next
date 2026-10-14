@@ -11,7 +11,7 @@ for (const [name, frame] of Object.entries(frames)) {
   assert.ok(frame.x >= 0 && frame.y >= 0 && frame.x + frame.w <= 1536 && frame.y + frame.h <= 1024, name + ": crop outside sheet");
   assert.ok(frame.label.length > 5, name + ": meaningful label missing");
 }
-for (const file of ["daba-ip-24-actions.png", "daba-laptop.png"]) assert.ok(fs.existsSync(path.join(root, "public/illustrations", file)), file);
+for (const file of ["daba-ip-24-actions-transparent.png", "daba-laptop-transparent.png"]) assert.ok(fs.existsSync(path.join(root, "public/illustrations", file)), file);
 const pages = {
   "index.html": ["wave"],
   "about/index.html": ["backpack", "bus", "phone", "stretch", "petCat"],
@@ -34,6 +34,9 @@ for (const [file, expected] of Object.entries(pages)) {
   const actual = [...html.matchAll(/data-pose="([^"]+)"/g)].map(m => m[1]);
   assert.deepEqual(actual, expected, file + ": incorrect contextual poses");
   assert.equal(new Set(actual).size, actual.length, file + ": repeated pose");
+  if (actual.some(pose => pose !== "wave" && pose !== "laptop")) assert.ok(html.includes("/illustrations/daba-ip-24-actions-transparent.png"), file + ": transparent sheet missing");
+  assert.ok(!html.includes('href="/illustrations/daba-ip-24-actions.png"'), file + ": opaque sheet still rendered");
+  assert.ok(!html.includes('src="/illustrations/daba-laptop.png"'), file + ": old laptop still rendered");
   all.push(...actual);
 }
 assert.equal(new Set(all).size, all.length, "Each placement must have a distinct pose");

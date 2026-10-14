@@ -8,11 +8,11 @@ export default function DabaIllustration({
   pose = "wave",
 }: { className?: string; priority?: boolean; pose?: DabaPose }) {
   const isSheet = pose !== "wave" && pose !== "laptop";
-  const classNames = ["daba-illustration", isSheet ? "daba-illustration--sheet" : "", className].filter(Boolean).join(" ");
+  const classNames = ["daba-illustration", className].filter(Boolean).join(" ");
   if (!isSheet) {
     const laptop = pose === "laptop";
     return <div className={classNames} data-pose={pose}>
-      <img src={laptop ? "/illustrations/daba-laptop.png" : "/illustrations/daba-wave-01.png"}
+      <img src={laptop ? "/illustrations/daba-laptop-transparent.png" : "/illustrations/daba-wave-01.png"}
         alt={laptop ? "大巴坐在电脑前，认真实测 AI 和整理项目记录" : "大巴 IP 的第一个招手动作：黑发少年穿黑色服装，微笑挥手"}
         width={laptop ? 1536 : 1185} height={laptop ? 1024 : 1327}
         loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} decoding="async" />
@@ -23,7 +23,7 @@ export default function DabaIllustration({
   return <div className={classNames} data-pose={pose} data-action-number={frame.number}>
     <svg viewBox={[frame.x, frame.y, frame.w, frame.h].join(" ")} role="img" aria-label={frame.label} focusable="false" preserveAspectRatio="xMidYMid meet">
       <defs><clipPath id={clipId}><rect x={frame.x} y={frame.y} width={frame.w} height={frame.h} /></clipPath></defs>
-      <image href="/illustrations/daba-ip-24-actions.png" width="1536" height="1024" clipPath={"url(#" + clipId + ")"} />
+      <image href="/illustrations/daba-ip-24-actions-transparent.png" width="1536" height="1024" clipPath={"url(#" + clipId + ")"} />
     </svg>
   </div>;
 }

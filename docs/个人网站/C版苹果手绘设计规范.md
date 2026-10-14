@@ -9,8 +9,9 @@
 - 系统无衬线字体，不加载外部字体；短标题、大留白，正文阅读优先。
 - 只有插图带手绘笔触；界面不用撕纸、车票边框、投影、渐变或玻璃。
 - 角色身份统一，动作按语境选择，不再每页都用同一张招手图。黑发、黑黄服装、不戴眼镜、二维手绘质感必须保持。
-- 首页保留 daba-wave-01.png；其余已有动作由 daba-ip-24-actions.png 在页面中分区呈现，不重画原角色，只加载一份动作表。动作边界集中管理在 components/daba-poses.json。
-- 新增 public/illustrations/daba-laptop.png，用于 AI 项目复盘；电脑、人物和服装保持同一手绘语言。
+- 首页保留透明底 daba-wave-01.png；其余已有动作由 daba-ip-24-actions-transparent.png 在页面中分区呈现，只加载一份动作表。动作边界集中管理在 components/daba-poses.json。
+- AI 项目复盘使用 public/illustrations/daba-laptop-transparent.png；电脑、人物和服装保持同一手绘语言。
+- 插图以透明画布直接融入页面，不带浅灰色纸底、矩形底板、白边或光晕；人物、鞋和道具中的浅色细节保留。使用真实 PNG alpha，不通过混合模式模拟透明；原始素材保留以便恢复。
 - 每处插图都应能解释其作用，同一页不重复动作，不覆盖文字和按钮。正文插图小于页面主视觉，手机优先保证阅读空间。
 
 ## 动作与内容
@@ -54,6 +55,16 @@
 2026-10-14 更新：使用内置 image_gen，对用户提供的 24 动作图做透明背景提取。提示词：只提取左上角第一格站立微笑招手人物，一只手在画面左侧举起，另一只手插兜；保留原角色面容、黑发黄色笔触、黑色上衣长裤、黄色胸口点缀与白黄鞋，以及二维铅笔漫画质感；保留招手旁的小黄色符号；移除其他 23 个动作、纸张背景和地面笔迹；完整保留头发、举起的手和双鞋，输出真实透明背景，不重新设计，不添加巴士、猫、眼镜、耳机、道具、文字、水印、阴影或三维效果。
 
 ## 设计方法
+
+2026-10-15 透明画布更新：使用内置 image_gen 编辑动作表和电脑动作；原素材未覆盖，生成文件保存为 public/illustrations/daba-ip-24-actions-transparent.png 和 public/illustrations/daba-laptop-transparent.png。提示词：
+
+```text
+Use case: background-extraction. EDIT TARGET: the supplied 1536x1024 IP sprite sheet of 24 poses in 6 columns and 4 rows. Primary request: remove ONLY the pale gray/off-white paper backdrop to create a genuine transparent-alpha sprite sheet for website illustrations, NOT a redraw. Keep exact 1536x1024 canvas, all 24 original poses in their exact original pixel positions, sizes and order; no layout shifts, cropping or rescaling. Preserve character identity and every drawing, including face and opaque pale face/white eyes/white-and-yellow shoes, black clothing, yellow highlights, cats, bus, props, yellow expressive marks. Distinguish white interiors of characters/objects from the paper backdrop: interiors must remain opaque. Remove paper texture and rectangular light-gray backing fully everywhere around and between figures. Preserve black/yellow pencil edges without a pale paper halo. No new illustration, checkerboard drawn into image, background, frame, text, watermark, extra characters, 3D, or invented elements. Genuine transparent background ONLY.
+```
+
+```text
+Use case: background-extraction. EDIT ONLY the existing IP boy at desk with laptop. Remove the entire soft pale/gray halo and stray white glyph at lower right. Create a clean true transparent cutout: outside the boy, chair, laptop and desk, alpha must be zero, including holes between chair/desk legs. Preserve the exact original boy identity, pose, desk, drawing, 1536x1024 landscape canvas, subject placement and size. Keep opaque pale face, white/yellow sneakers, pencil/crayon white interior strokes and every black/yellow object detail. Do NOT redraw or restyle the character, change composition, or add cats, bus, shadow, halo, paper texture, background rectangle, text, watermark, ground or 3D. Only remove peripheral backdrop/halo and stray glyph; no other changes.
+```
 
 新增电脑动作由内置 image_gen 生成，参考原 24 动作图。提示词：
 
