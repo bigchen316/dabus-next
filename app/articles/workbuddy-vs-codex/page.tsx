@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "../../../components/Reveal";
+import DabaIllustration from "../../../components/DabaIllustration";
 
 export const metadata: Metadata = {
   title: "同一个个人站，两轮 AI 协作：从 Work Buddy 到 Codex",
@@ -21,11 +22,13 @@ export default function WorkBuddyVsCodexArticle() {
         <div className="article-meta">
           <span>大巴Bus</span><span>个人项目复盘</span><span>2026.09</span>
         </div>
+        <DabaIllustration className="article-banner" />
       </header>
 
       <article className="article-body wrap">
         <aside className="article-note">
           <b>先说明比较范围</b>
+          <p>本文记录的是 2026 年 9 月的项目阶段。网站如今已采用清爽手绘 IP 与简洁白灰页面，下文保留当时的迭代过程。</p>
           <p>
             这不是同一提示词、同一条件下的工具排名。Work Buddy 和 Codex 参与的是这个项目的不同阶段，
             下文只对照留下来的页面、头像和代码产物。

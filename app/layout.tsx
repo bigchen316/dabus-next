@@ -19,18 +19,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fira+Code:wght@400;500&family=Fraunces:ital,wght@0,700;0,900;1,700;1,900&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@700;900&display=swap"
-          rel="stylesheet"
-        />
-      </head>
       <body>
         <a className="skip-link" href="#main-content">跳到主要内容</a>
         <Nav />
