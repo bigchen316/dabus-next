@@ -111,10 +111,6 @@ img { display:block; max-width:100%; }
 .article-end { margin:65px 0 70px; background:var(--surface); border-radius:24px; padding:38px; text-align:center; }
 .article-end .chip { font-size:20px; font-weight:600; }
 .article-end p { margin:15px 0 25px; color:var(--muted); }
-.archive-note { max-width:680px; margin:0 auto; text-align:center; }
-.archive-note p { margin-top:22px; }
-.archive-links { margin-top:28px; display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
-.archive-links a { text-decoration:underline; text-underline-offset:5px; }
 .site-footer { background:var(--surface); padding:48px 0 25px; margin-top:25px; }
 .footer-main { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:28px; }
 .footer-main p { color:var(--muted); font-size:14px; margin-top:12px; }

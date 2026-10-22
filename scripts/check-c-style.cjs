@@ -19,6 +19,4 @@ const image = fs.readFileSync(path.join(root, "public/illustrations/daba-wave-01
 assert.equal(image.subarray(1, 4).toString(), "PNG");
 assert.ok([4, 6].includes(image[25]), "PNG must support alpha transparency");
 assert.match(read("components/Nav.tsx"), /\/articles\//);
-assert.match(read("components/DesignConcept.tsx"), /DesignArchive/);
-assert.match(read("components/IPLab.tsx"), /DesignArchive/);
-console.log("PASS: shared C style, five content pages, archive routes, static UI and alpha asset.");
+console.log("PASS: shared C style, five content pages, static UI and alpha asset.");

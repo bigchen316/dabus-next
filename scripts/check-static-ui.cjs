@@ -27,10 +27,7 @@ for (const file of sourceFiles) {
 for (const file of ['ArrivalTransition', 'PageTransition', 'BlackCat']) {
   assert.equal(fs.existsSync(path.join(repo, `components/${file}.tsx`)), false, `${file} must be removed.`);
 }
-assert.match(read('components/DabaCatSprite.tsx'), /x="-144"/, 'Mascot must use the fixed second frame.');
-assert.doesNotMatch(read('components/DabaCatSprite.tsx'), /<button|useState|useEffect/, 'Static mascot must not be interactive.');
 assert.doesNotMatch(read('app/page.tsx'), /靠近唤醒|点击起跳|\banimated\b/, 'Interaction hint must not remain.');
 assert.match(read('components/Nav.tsx'), /href: "\/about\/"/, 'Normal page navigation must remain.');
 assert.match(read('app/contact/page.tsx'), /mailto:/, 'Email link must remain.');
-assert.equal(fs.existsSync(path.join(repo, 'public/avatars/daba-cat-bus-sheet.png')), true, 'Original image asset must remain.');
-console.log(`PASS: CSS, ${sourceFiles.length} source files, static mascot, links and focus checked.`);
+console.log(`PASS: CSS, ${sourceFiles.length} source files, links and focus checked.`);

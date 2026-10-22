@@ -28,7 +28,6 @@ npm run serve      # 本地预览 out/ http://localhost:4173
 | `/contact/` | 乘车指南：邮箱与平台账号 | 邮箱入口 / 清晰账号列表 |
 | `/articles/` | 真实文章列表 | 文章主视觉与阅读入口 |
 | `/articles/workbuddy-vs-codex/` | Work Buddy 与 Codex 共同迭代个人网站和 IP 的项目复盘 | 长文 / 横向比较表 |
-| `/design-options/` | 早期方案归档说明 | C 版统一外观 / 返回正式站 |
 
 ## 设计规范
 

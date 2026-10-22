@@ -19,14 +19,6 @@ const pages = {
   "articles/index.html": ["read"],
   "articles/workbuddy-vs-codex/index.html": ["laptop", "sketch", "thumbsUp"],
   "404.html": ["telescope"],
-  "design-options/index.html": ["idle"],
-  "design-options/station/index.html": ["walking"],
-  "design-options/editorial/index.html": ["sleep"],
-  "design-options/signal/index.html": ["running"],
-  "design-options/ip-lab/index.html": ["thinking"],
-  "design-options/ip-lab/pop/index.html": ["jump"],
-  "design-options/ip-lab/os/index.html": ["tieShoes"],
-  "design-options/ip-lab/cinema/index.html": ["lookout"],
 };
 const all = [];
 for (const [file, expected] of Object.entries(pages)) {
