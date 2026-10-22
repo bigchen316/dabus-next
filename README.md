@@ -17,13 +17,13 @@ npm run dev        # 开发模式 http://localhost:3000
 npm run serve      # 本地预览 out/ http://localhost:4173
 ```
 
-发布前运行 `npm run build`，再运行 `node scripts/check-ip-poses.cjs` 与 `node scripts/check-export-links.cjs`。动作检查包含 C 版样式与无动画要求。
+替换插图 PNG 后运行 `node scripts/make-webp.cjs` 重新生成页面用的 WebP。发布前运行 `npm run build`，再运行 `node scripts/check-ip-poses.cjs` 与 `node scripts/check-export-links.cjs`。动作检查包含 C 版样式与无动画要求。
 
 ## 页面结构
 
 | 路由 | 内容 | 布局模式 |
 |---|---|---|
-| `/` | 首页：手绘 IP、阅读实测与最新文章 | 单屏、中央主角、白灰页面 |
+| `/` | 首页：手绘 IP、阅读实测与最新文章；下方为赛博盲盒预留位 | 首屏一屏、中央主角，下滚见盲盒 |
 | `/about/` | 司机档案：背包 IP、自介与内容方向配图 | 留白分栏 / 文本内容 |
 | `/contact/` | 乘车指南：邮箱与平台账号 | 邮箱入口 / 清晰账号列表 |
 | `/articles/` | 真实文章列表 | 文章主视觉与阅读入口 |
