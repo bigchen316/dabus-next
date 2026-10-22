@@ -1,4 +1,4 @@
-// 生成首页星空的三层可平铺 SVG（固定随机种子，重复运行结果一致）。
+﻿// 生成首页星空的三层可平铺 SVG（固定随机种子，重复运行结果一致）。
 // 第一层静态铺底；第二、三层是较亮的星，由 CSS 错开节奏做轻微闪烁。
 const fs = require("node:fs");
 const path = require("node:path");
@@ -25,21 +25,21 @@ layer("stars-far.svg", 520, 140, 0.4, 1.0, 0.25, 0.7, 0.08);
 layer("stars-near.svg", 760, 34, 0.9, 1.7, 0.7, 1, 0.25);
 layer("stars-glint.svg", 980, 22, 1.0, 1.9, 0.75, 1, 0.3);
 
-// 偶尔闪烁层：每颗星平时不可见，各自隔 9～18 秒闪一次十字星光（约 1 秒），节奏互不相同。
+// 偶尔闪烁层：每颗星平时不可见，各自隔 4.5～9 秒闪一次带光晕的十字星光（约 1.2 秒），节奏互不相同。
 // 只在 CSS 的 prefers-reduced-motion: no-preference 下加载。
 function twinkle(file, size, count) {
   const stars = [];
   for (let i = 0; i < count; i++) {
     const x = +(40 + rand() * (size - 80)).toFixed(1), y = +(40 + rand() * (size - 80)).toFixed(1);
-    const s = +(4 + rand() * 4).toFixed(1);
-    const dur = (9 + rand() * 9).toFixed(1), delay = (-rand() * 18).toFixed(1);
+    const s = +(9 + rand() * 7).toFixed(1);
+    const dur = (4.5 + rand() * 4.5).toFixed(1), delay = (-rand() * 9).toFixed(1);
     const fill = rand() < 0.35 ? "#ffe08a" : "#ffffff";
     const ray = `M${x} ${y - s}Q${x} ${y} ${x + s} ${y}Q${x} ${y} ${x} ${y + s}Q${x} ${y} ${x - s} ${y}Q${x} ${y} ${x} ${y - s}Z`;
-    stars.push(`<g class="t" style="animation-duration:${dur}s;animation-delay:${delay}s" fill="${fill}"><path d="${ray}"/><circle cx="${x}" cy="${y}" r="${(s / 4).toFixed(2)}"/></g>`);
+    stars.push(`<g class="t" style="animation-duration:${dur}s;animation-delay:${delay}s" fill="${fill}"><circle cx="${x}" cy="${y}" r="${(s * 0.9).toFixed(1)}" fill-opacity=".22"/><path d="${ray}"/><circle cx="${x}" cy="${y}" r="${(s / 4).toFixed(2)}"/></g>`);
   }
-  const style = "<style>.t{opacity:0;transform-box:fill-box;transform-origin:center;animation:f linear infinite}@keyframes f{0%,90%,100%{opacity:0;transform:scale(.3)}94%{opacity:1;transform:scale(1)}}</style>";
+  const style = "<style>.t{opacity:0;transform-box:fill-box;transform-origin:center;animation:f linear infinite}@keyframes f{0%,82%,100%{opacity:0;transform:scale(.3)}89%{opacity:1;transform:scale(1)}}</style>";
   fs.writeFileSync(path.join(out, file), `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}">${style}${stars.join("")}</svg>\n`);
   console.log(file, count + " twinkles", Math.round(fs.statSync(path.join(out, file)).size / 1024) + " KB");
 }
 
-twinkle("stars-twinkle.svg", 1100, 9);
+twinkle("stars-twinkle.svg", 900, 24);
