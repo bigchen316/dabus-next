@@ -222,8 +222,7 @@ body:has(.home) .nav { background:transparent; }
   .home-rows li > code, .home-rows li > a { grid-column:2 / -1; grid-row:2; }
   .home-hint { grid-row:1; grid-column:3; }
 }
-/* 首页星星轻微闪烁，系统要求减少动态时不播放。 */
+/* 首页星星偶尔闪烁（动画写在 stars-twinkle.svg 里），系统要求减少动态时不加载这一层。 */
 @media(prefers-reduced-motion:no-preference) {
-  @keyframes home-twinkle { from { opacity:.2; } to { opacity:1; } }
-  .home::after { animation:home-twinkle 4.8s ease-in-out infinite alternate; }
+  .home::after { background:url(/home/stars-twinkle.svg), url(/home/stars-glint.svg); background-position:0 0, 140px 60px; }
 }
