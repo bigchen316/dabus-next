@@ -23,7 +23,7 @@ const figures = {
   }
   await sharp(path.join(src, "ChatGPT 图像 2026年10月20日 01_27_21.png")).resize(1200).webp({ quality: 82 }).toFile(path.join(out, "daba-car.webp"));
 
-  // 规范第 8 页：深色或彩色底上的人物加约 1.5% 人物高度的纸白贴纸边。
+  // 深色或彩色底上的人物加约 1.5% 人物高度的纸白贴纸边，避免黑衣融进背景。
   const cut = path.join(src, "blender素材/公仔_基础款_透明.png");
   const { width, height } = await sharp(cut).metadata();
   const pad = Math.round(height * 0.015);

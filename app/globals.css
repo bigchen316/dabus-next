@@ -99,7 +99,7 @@ img { display:block; max-width:100%; }
 .footer-email { padding-top:12px; font-size:14px; overflow-wrap:anywhere; }
 .footer-bottom { margin-top:45px; color:var(--muted); font-size:11px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
 /* 首页：满屏星空 + 窄栏排版（版式节奏参考 oiloil.org），3D 形象与星空素材见 public/home/。
-   深色底是首页专属例外（2026-10-22 用户确认）；人物统一用带纸白贴纸边的版本，保证轮廓清晰。 */
+   人物用带纸白贴纸边的版本，黑衣在深色底上轮廓更清晰。 */
 body:has(.home) { --night:#0a0f1f; --night-card:#121933; --night-muted:#9ca3bd; background:var(--night); color:var(--bus-paper); }
 body:has(.home) .nav { background:transparent; }
 .home { --line:#232b48; position:relative; isolation:isolate; padding-bottom:72px; }
@@ -222,7 +222,7 @@ body:has(.home) .nav { background:transparent; }
   .home-rows li > code, .home-rows li > a { grid-column:2 / -1; grid-row:2; }
   .home-hint { grid-row:1; grid-column:3; }
 }
-/* 首页星星轻微闪烁：唯一允许的动画，仅在系统未要求减少动态时播放。 */
+/* 首页星星轻微闪烁，系统要求减少动态时不播放。 */
 @media(prefers-reduced-motion:no-preference) {
   @keyframes home-twinkle { from { opacity:.2; } to { opacity:1; } }
   .home::after { animation:home-twinkle 4.8s ease-in-out infinite alternate; }
