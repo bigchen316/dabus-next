@@ -4,7 +4,6 @@ const path = require("node:path");
 const sharp = require("sharp");
 const root = path.resolve(__dirname, "../public");
 const files = [
-  "illustrations/daba-wave-01.png",
   "illustrations/daba-ip-24-actions-transparent.png",
   "illustrations/daba-laptop-transparent.png",
 ];

@@ -3,7 +3,12 @@ const fs = require('node:fs');
 const path = require('node:path');
 const repo = path.resolve(__dirname, '..');
 const read = file => fs.readFileSync(path.join(repo, file), 'utf8');
-const css = read('app/globals.css');
+const fullCss = read('app/globals.css');
+
+// 唯一例外：首页星星闪烁，必须包在 prefers-reduced-motion:no-preference 里，且只作用于 .home::after。
+const twinkle = /@media\(prefers-reduced-motion:no-preference\) \{\n  @keyframes home-twinkle \{[^\n]*\}\n  \.home::after \{ animation:home-twinkle [^\n]*\}\n\}\n?/;
+assert.match(fullCss, twinkle, 'Homepage twinkle must stay limited to .home::after behind prefers-reduced-motion.');
+const css = fullCss.replace(twinkle, '');
 
 assert.doesNotMatch(css, /@(?:-\w+-)?keyframes\b/i, 'Keyframe animation must not return.');
 assert.doesNotMatch(css, /(?:^|[;{\s])(?:-\w+-)?(?:animation|transition)(?:-[\w-]+)?\s*:/i, 'Animation/transition declarations must be removed.');

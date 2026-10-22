@@ -1,14 +1,13 @@
-// 从 E:\个人IP形象文件 导出落地页用的 3D 形象 WebP（临时预览阶段使用）。
-// 用法：node scripts/make-landing-images.cjs "E:\个人IP形象文件"
+// 从 E:\个人IP形象文件 导出首页用的 3D 形象 WebP。星空素材见 make-starfield.cjs。
+// 用法：node scripts/make-home-images.cjs "E:\个人IP形象文件"
 const fs = require("node:fs");
 const path = require("node:path");
 const sharp = require("sharp");
 const src = process.argv[2];
-const out = path.resolve(__dirname, "../public/landing");
+const out = path.resolve(__dirname, "../public/home");
 fs.mkdirSync(out, { recursive: true });
 
 const figures = {
-  "fig-base": "混元3D上传/01_基础款.png",
   "fig-basketball": "混元3D上传/02_篮球款.png",
   "fig-ai": "混元3D上传/03_AI学习款.png",
   "fig-study": "混元3D上传/04_学霸款.png",
@@ -24,9 +23,8 @@ const figures = {
   }
   await sharp(path.join(src, "ChatGPT 图像 2026年10月20日 01_27_21.png")).resize(1200).webp({ quality: 82 }).toFile(path.join(out, "daba-car.webp"));
 
-  // 透明基础款，以及规范第 8 页要求的纸白贴纸边版本（用于巴黄底）。
+  // 规范第 8 页：深色或彩色底上的人物加约 1.5% 人物高度的纸白贴纸边。
   const cut = path.join(src, "blender素材/公仔_基础款_透明.png");
-  await sharp(cut).webp({ quality: 86, alphaQuality: 100 }).toFile(path.join(out, "hero-cutout.webp"));
   const { width, height } = await sharp(cut).metadata();
   const pad = Math.round(height * 0.015);
   // 原透明图边缘有一圈低透明度的浅色雾边，先清掉，否则贴纸边外会像光晕。

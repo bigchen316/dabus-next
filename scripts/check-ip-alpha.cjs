@@ -6,7 +6,6 @@ const root = path.resolve(__dirname, "..");
 const assets = [
   ["daba-ip-24-actions-transparent.png", 1536, 1024],
   ["daba-laptop-transparent.png", 1536, 1024],
-  ["daba-wave-01.png", 1185, 1327],
 ];
 
 async function check() {
