@@ -3,7 +3,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const repo = path.resolve(__dirname, '..');
 const read = file => fs.readFileSync(path.join(repo, file), 'utf8');
-const fullCss = read('app/globals.css');
+// Windows 检出可能是 CRLF，统一成 LF 再比对。
+const fullCss = read('app/globals.css').replace(/\r\n/g, '\n');
 
 // 唯一例外：首页星星闪烁，必须包在 prefers-reduced-motion:no-preference 里，且只作用于 .home::after。
 const twinkle = /@media\(prefers-reduced-motion:no-preference\) \{\n  @keyframes home-twinkle \{[^\n]*\}\n  \.home::after \{ animation:home-twinkle [^\n]*\}\n\}\n?/;
