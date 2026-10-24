@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HomeTurntable from "../components/HomeTurntable";
 
 const pillars = [
   { title: "AI 工具实测", tag: "实测", text: "每个工具亲手跑一遍再写：能干嘛、怎么上手、值不值。不恰饭，才敢说真话。", img: "/home/fig-ai.webp", alt: "大巴穿蓝白卫衣，端着笔记本电脑，身边飘着 AI 小助手" },
@@ -28,11 +29,19 @@ const sections = [
 export default function Home() {
   return <main id="main-content" className="home">
     <section className="home-hero" aria-labelledby="home-title">
-      <div className="home-col home-hero-inner">
-        <h1 id="home-title"><span>大巴</span><span>上车，</span><span>探索 AI.</span></h1>
-        <img className="home-figure" src="/home/hero-sticker.webp" alt="大巴 3D 形象：黑色运动套装，胸前黄色小 W，微笑站立，带白色贴纸边" width={586} height={1351} fetchPriority="high" />
-        <p className="home-meta"><strong>大 巴</strong><span>普通上班族 / AI 爱好者 / 动漫观众</span></p>
-        <a className="home-down" href="#content">↓ 往下滑</a>
+      <div className="home-hero-kicker"><span>AI · 创作 · 日常</span><span>PERSONAL SPACE</span></div>
+      <div className="home-hero-inner">
+        <h1 id="home-title" className="home-title" aria-label="探索 AI."><span>探索</span><span className="home-title-ai">AI.</span></h1>
+        <HomeTurntable />
+      </div>
+      <div className="home-hero-band">
+        <div className="home-hero-copy">
+          <p className="home-hello">HELLO, I'M DABA</p>
+          <p className="home-intro">上车，一起探索 AI。</p>
+          <p className="home-meta">普通上班族 / AI 爱好者 / 动漫观众</p>
+          <a className="home-explore" href="#content">开始探索<span aria-hidden="true">→</span></a>
+        </div>
+        <a className="home-down" href="#content"><span aria-hidden="true">↓</span>往下滑</a>
       </div>
     </section>
 
