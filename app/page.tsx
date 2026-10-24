@@ -58,7 +58,7 @@ export default function Home() {
 
     <section className="home-col home-section" data-num="03" aria-labelledby="home-picks-title">
       <h2 id="home-picks-title" className="home-label">推荐 · 动漫与内容</h2>
-      <div className="home-grid">
+      <div className="home-grid home-picks-grid">
         <div className="home-card">
           <div className="home-card-head"><h3>动漫副驾日常</h3><span className="home-tag">动漫</span></div>
           <p>下班路上的精神食粮：追番碎碎念、冷门安利，偶尔剧透警告。</p>
