@@ -121,7 +121,7 @@ body:has(.home) { --night:#0a0f1f; --night-card:#121933; --night-muted:#9ca3bd; 
 }
 .home-blindbox-card:hover,.home-blindbox-card:active { transform:none; }
 .home-contact-list { display:grid; gap:10px; list-style:none; padding:0; margin:0; }
-.home-contact-card { display:grid; grid-template-columns:44px 140px minmax(0,1fr) auto; align-items:center; gap:12px; min-width:0; padding:14px 18px; background:#131b36; border:1px solid #2d385c; border-radius:16px; box-shadow:0 6px 18px #0002; transition:transform 220ms var(--hero-ease),border-color 220ms ease-out,background-color 220ms ease-out,box-shadow 220ms ease-out; }
+.home-contact-card { display:grid; grid-template-columns:44px 140px minmax(0,1fr) auto; align-items:center; gap:12px; min-width:0; min-height:88px; padding:14px 18px; background:#131b36; border:1px solid #2d385c; border-radius:16px; box-shadow:0 6px 18px #0002; transition:transform 220ms var(--hero-ease),border-color 220ms ease-out,background-color 220ms ease-out,box-shadow 220ms ease-out; }
 .home-idx { display:grid; place-items:center; width:32px; height:32px; border:1px solid #35405f; border-radius:10px; background:#0d1429; font-size:11px; color:var(--night-muted); font-variant-numeric:tabular-nums; }
 .home-contact-card strong { font-size:19px; }
 .home-contact-card code { font-family:ui-monospace,Consolas,monospace; font-size:13px; color:var(--night-muted); overflow-wrap:anywhere; }
