@@ -64,9 +64,9 @@ export default function Home() {
 
     <section className="home-col home-section" data-num="05" aria-labelledby="home-contact-title">
       <h2 id="home-contact-title" className="home-label">— 交流 / 找到大巴</h2>
-      <ol className="home-rows">
-        {platforms.map((p, i) => <li key={p.name}><span className="home-idx">{String(i + 1).padStart(2, "0")}</span><strong>{p.name}</strong><code>{p.handle}</code><span className="home-hint">搜索</span></li>)}
-        <li><span className="home-idx">{String(platforms.length + 1).padStart(2, "0")}</span><strong>Email</strong><a href={`mailto:${email}`}><code>{email}</code></a><span className="home-hint" aria-hidden="true">→</span></li>
+      <ol className="home-contact-list">
+        {platforms.map((p, i) => <li className="home-contact-card" key={p.name}><span className="home-idx">{String(i + 1).padStart(2, "0")}</span><strong>{p.name}</strong><code>{p.handle}</code><span className="home-hint">搜索</span></li>)}
+        <li className="home-contact-card"><span className="home-idx">{String(platforms.length + 1).padStart(2, "0")}</span><strong>Email</strong><a href={`mailto:${email}`}><code>{email}</code></a><span className="home-hint" aria-hidden="true">→</span></li>
       </ol>
     </section>
     </HomeSections>
