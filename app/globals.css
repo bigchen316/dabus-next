@@ -87,7 +87,7 @@ body:has(.home) { --night:#0a0f1f; --night-card:#121933; --night-muted:#9ca3bd; 
 .home-card { display:flex; flex-direction:column; margin:0; background:var(--night-card); border:1px solid var(--line); border-radius:18px; padding:22px 22px 0; overflow:hidden; }
 .home-card-head { display:flex; align-items:flex-start; gap:10px; }
 .home-card h3 { font-size:clamp(22px,2.6vw,28px); font-weight:800; letter-spacing:-.04em; line-height:1.1; }
-.home-arrow { margin-left:auto; color:var(--night-muted); }
+.home-arrow { margin-left:auto; color:var(--night-muted); transition:color 220ms ease-out,transform 260ms var(--hero-ease); }
 .home-card > p { color:var(--night-muted); font-size:14px; margin-top:8px; }
 .home-card img { margin:18px -22px 0; width:calc(100% + 44px); max-width:none; aspect-ratio:4/3; object-fit:cover; object-position:50% 22%; background:var(--bus-photo); }
 .home-project-grid { grid-template-columns:repeat(3,minmax(0,1fr)); grid-auto-rows:minmax(var(--home-project-card-min-height),auto); align-items:stretch; }
@@ -97,7 +97,7 @@ body:has(.home) { --night:#0a0f1f; --night-card:#121933; --night-muted:#9ca3bd; 
 .home-project-tag { align-self:flex-start; margin-top:12px; color:var(--bus-yellow); font-size:12px; font-weight:650; }
 .home-project-card > p { margin-top:10px; }
 .home-project-visual { display:grid; place-items:center; overflow:hidden; margin-top:auto; padding-top:20px; }
-.home-project-card .home-project-visual img { width:100%; height:auto; margin:0; aspect-ratio:4/3; object-fit:contain; background:transparent; }
+.home-project-card .home-project-visual img { width:100%; height:auto; margin:0; aspect-ratio:4/3; object-fit:contain; background:transparent; transition:transform 420ms var(--hero-ease),filter 420ms ease-out; }
 .home-project-action { margin-top:18px; color:var(--bus-yellow); font-size:13px; font-weight:600; }
 .home-blindbox-card { padding:18px; }
 .home-blindbox-card .home-project-tag { margin-top:6px; }
@@ -108,10 +108,16 @@ body:has(.home) { --night:#0a0f1f; --night-card:#121933; --night-muted:#9ca3bd; 
 .home-blindbox-loading { position:absolute; inset:0; display:grid; align-content:start; padding-top:90px; text-align:center; font-size:13px; color:var(--night-muted); }
 .home-blindbox-card > .home-project-action { align-self:flex-start; margin-top:10px; text-decoration:underline; text-underline-offset:4px; }
 .home-blindbox-card > .home-project-action:hover { color:#ffe376; }
-@media(hover:hover) {
+.home-project-card:focus-visible { outline:2px solid var(--bus-yellow); outline-offset:4px; }
+.home-project-card:focus-visible .home-arrow { color:var(--bus-yellow); }
+@media(hover:hover) and (prefers-reduced-motion:no-preference) {
   .home-project-card:hover { transform:translateY(-4px); border-color:#5a6485; background:#171f3b; box-shadow:0 14px 24px #0003; }
+  .home-project-card:hover .home-project-visual img { transform:scale(1.035); filter:saturate(1.04); }
+  .home-project-card:hover .home-arrow { color:var(--bus-yellow); transform:translate(3px,-3px); }
 }
-.home-project-card:active { transform:translateY(-1px); }
+@media(prefers-reduced-motion:no-preference) {
+  .home-project-card:active { transform:translateY(-1px) scale(.99); }
+}
 .home-blindbox-card:hover,.home-blindbox-card:active { transform:none; }
 .home-rows { list-style:none; padding:0; margin:0; }
 .home-rows li { display:grid; grid-template-columns:44px 140px 1fr auto; align-items:center; gap:12px; padding:18px 4px; border-bottom:1px solid var(--line); }
@@ -179,5 +185,5 @@ body:has(.home) { --night:#0a0f1f; --night-card:#121933; --night-muted:#9ca3bd; 
 @keyframes home-figure-in { from { opacity:0; translate:0 20px; } to { opacity:1; translate:0 0; } }
 @keyframes home-copy-in { from { opacity:0; translate:0 8px; } to { opacity:1; translate:0 0; } }
 @media(prefers-reduced-motion:reduce) {
-  body,.home-explore,.home-explore span,.home-tabs button,.home-tab-indicator,.home-project-card,.home-down span,.turntable-controls button { transition:none; }
+  body,.home-explore,.home-explore span,.home-tabs button,.home-tab-indicator,.home-project-card,.home-project-visual img,.home-arrow,.home-down span,.turntable-controls button { transition:none; }
 }
