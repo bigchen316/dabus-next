@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Turntable from "../components/Turntable";
 
 const pillars = [
   { title: "AI 工具实测", tag: "实测", text: "每个工具亲手跑一遍再写：能干嘛、怎么上手、值不值。不恰饭，才敢说真话。", img: "/home/fig-ai.webp", alt: "大巴穿蓝白卫衣，端着笔记本电脑，身边飘着 AI 小助手" },
@@ -28,11 +29,17 @@ const sections = [
 export default function Home() {
   return <main id="main-content" className="home">
     <section className="home-hero" aria-labelledby="home-title">
-      <div className="home-col home-hero-inner">
-        <h1 id="home-title"><span>大巴</span><span>上车，</span><span>探索 AI.</span></h1>
-        <img className="home-figure" src="/home/hero-sticker.webp" alt="大巴 3D 形象：黑色运动套装，胸前黄色小 W，微笑站立，带白色贴纸边" width={586} height={1351} fetchPriority="high" />
-        <p className="home-meta"><strong>大 巴</strong><span>普通上班族 / AI 爱好者 / 动漫观众</span></p>
-        <a className="home-down" href="#content">↓ 往下滑</a>
+      <div className="home-hero-inner">
+        <div className="home-hero-copy">
+          <p className="home-kicker"><b>夜班车</b> · 熬夜也在探索 AI</p>
+          <h1 id="home-title"><span className="home-chip">大巴</span><span>上车</span><span>探索 <em>AI</em></span></h1>
+          <p className="home-meta"><strong>大 巴</strong><span>普通上班族 / AI 爱好者 / 动漫观众</span></p>
+          <div className="home-actions"><Link className="home-cta" href="/articles/">阅读实测</Link><a className="home-down" href="#content">↓ 往下滑</a></div>
+        </div>
+        <div className="home-stage">
+          <Turntable />
+          <p className="home-stage-note" aria-hidden="true"><b>熬夜款</b> · 拖动转一圈</p>
+        </div>
       </div>
     </section>
 
