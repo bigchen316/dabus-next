@@ -10,7 +10,9 @@
       "image": "/home/product-box.webp",
       "imageAlt": "大巴赛博盲盒 VOL.01 星空包装盒",
       "action": "在线开盒 ↗"
-    },
+    }
+  ],
+  "tests": [
     {
       "id": "blindbox-workflow",
       "title": "IP 盲盒快捷工作流",
@@ -20,32 +22,6 @@
       "image": "/home/product-lineup.webp",
       "imageAlt": "大巴盲盒全部 9 款公仔",
       "action": "查看工作流 ↗"
-    }
-  ],
-  "tests": [
-    {
-      "id": "ai-tools",
-      "title": "AI 工具实测",
-      "description": "每个工具亲手跑一遍再写：能干嘛、怎么上手、值不值。不恰饭，才敢说真话。",
-      "tag": "实测",
-      "image": "/home/fig-ai.webp",
-      "imageAlt": "大巴端着笔记本电脑，身边飘着 AI 小助手"
-    },
-    {
-      "id": "efficiency",
-      "title": "效率折腾手册",
-      "description": "上班族视角的效率技巧。怎么把重复劳动交给 AI，把时间还给生活。",
-      "tag": "手册",
-      "image": "/home/fig-coffee.webp",
-      "imageAlt": "大巴下班后拿着咖啡和笔记本"
-    },
-    {
-      "id": "workbuddy-codex",
-      "title": "WorkBuddy vs Codex",
-      "description": "从个人网站到个人 IP，两轮 AI 协作的真实记录。",
-      "tag": "复盘",
-      "image": "/home/fig-study.webp",
-      "imageAlt": "大巴背着书包拿笔记本记录"
     }
   ]
 }
