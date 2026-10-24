@@ -21,9 +21,10 @@ const figures = {
   for (const [name, file] of Object.entries(figures)) {
     await sharp(path.join(src, file)).resize(900, 900).webp({ quality: 82 }).toFile(path.join(out, name + ".webp"));
   }
-  // 小车图的源文件已不在资料夹中，没有时保留现有的 daba-car.webp。
-  const car = path.join(src, "ChatGPT 图像 2026年10月20日 01_27_21.png");
-  if (fs.existsSync(car)) await sharp(car).resize(1200).webp({ quality: 82 }).toFile(path.join(out, "daba-car.webp"));
+  // 产品板块：盲盒包装图和全款公仔排列图，取自 daba-cyber-blindbox 仓库。
+  const productImages = path.join(src, "GitHub上传/daba-cyber-blindbox/docs/images");
+  await sharp(path.join(productImages, "box.jpg")).resize(720).webp({ quality: 82 }).toFile(path.join(out, "product-box.webp"));
+  await sharp(path.join(productImages, "lineup.jpg")).webp({ quality: 80 }).toFile(path.join(out, "product-lineup.webp"));
 
   // 首屏转盘：熬夜款 24 帧透明渲染。所有帧按同一个外框裁切，转动时人物不会跳位。
   const ttSrc = path.join(src, "渲染/公仔转盘/05_熬夜款");
