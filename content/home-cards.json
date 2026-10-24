@@ -27,31 +27,25 @@
       "id": "ai-tools",
       "title": "AI 工具实测",
       "description": "每个工具亲手跑一遍再写：能干嘛、怎么上手、值不值。不恰饭，才敢说真话。",
-      "url": "/articles/",
       "tag": "实测",
       "image": "/home/fig-ai.webp",
-      "imageAlt": "大巴端着笔记本电脑，身边飘着 AI 小助手",
-      "action": "阅读实测 →"
+      "imageAlt": "大巴端着笔记本电脑，身边飘着 AI 小助手"
     },
     {
       "id": "efficiency",
       "title": "效率折腾手册",
       "description": "上班族视角的效率技巧。怎么把重复劳动交给 AI，把时间还给生活。",
-      "url": "/articles/",
       "tag": "手册",
       "image": "/home/fig-coffee.webp",
-      "imageAlt": "大巴下班后拿着咖啡和笔记本",
-      "action": "阅读手册 →"
+      "imageAlt": "大巴下班后拿着咖啡和笔记本"
     },
     {
       "id": "workbuddy-codex",
       "title": "WorkBuddy vs Codex",
       "description": "从个人网站到个人 IP，两轮 AI 协作的真实记录。",
-      "url": "/articles/workbuddy-vs-codex/",
       "tag": "复盘",
       "image": "/home/fig-study.webp",
-      "imageAlt": "大巴背着书包拿笔记本记录",
-      "action": "阅读复盘 →"
+      "imageAlt": "大巴背着书包拿笔记本记录"
     }
   ]
 }

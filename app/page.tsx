@@ -39,7 +39,7 @@ export default function Home() {
           <p className="home-hello">HELLO, I'M DABA</p>
           <p className="home-intro">上车，一起探索 AI。</p>
           <p className="home-meta">普通上班族 / AI 爱好者 / 动漫观众</p>
-          <div className="home-actions"><Link className="home-explore" href="#products">开始探索<span aria-hidden="true">→</span></Link><Link className="home-read" href="/articles/">阅读实测 ↗</Link></div>
+          <div className="home-actions"><Link className="home-explore" href="#products">开始探索<span aria-hidden="true">→</span></Link></div>
         </div>
         <Link className="home-down" href="#products"><span aria-hidden="true">↓</span>往下滑</Link>
       </div>
@@ -74,10 +74,10 @@ export default function Home() {
 
     <section className="home-col home-section" data-num="04" aria-labelledby="home-about-title">
       <h2 id="home-about-title" className="home-label">关于我 · 普通上班族 / AI 爱好者 / 动漫观众</h2>
-      <Link href="/about/" className="home-card home-card-ink home-card-wide">
-        <div className="home-card-head"><h3>为什么叫大巴？</h3><span className="home-arrow" aria-hidden="true">↗</span></div>
+      <div className="home-card home-card-ink home-card-wide">
+        <div className="home-card-head"><h3>为什么叫大巴？</h3></div>
         <p>起点固定、路线清晰、谁都能上、到站即达。做内容也是这样，不端着，也不绕路。</p>
-      </Link>
+      </div>
       <div className="home-grid home-grid-small home-feature-gap">
         {moments.map(m => <figure key={m.title} className="home-card home-moment">
           <figcaption className="home-card-head"><h3>{m.title}</h3><span>{m.note}</span></figcaption>
