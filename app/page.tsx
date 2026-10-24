@@ -30,22 +30,24 @@ const sections = [
 export default function Home() {
   return <main id="main-content" className="home">
     <section className="home-hero" aria-labelledby="home-title">
+      <div className="home-hero-kicker"><span>AI · 创作 · 日常</span><span>PERSONAL SPACE</span></div>
       <div className="home-hero-inner">
+        <h1 id="home-title" className="home-title" aria-label="探索 AI."><span>探索</span><span className="home-title-ai">AI.</span></h1>
+        <div className="home-stage"><Turntable /></div>
+      </div>
+      <div className="home-hero-band">
         <div className="home-hero-copy">
-          <p className="home-kicker"><b>夜班车</b> · 熬夜也在探索 AI</p>
-          <h1 id="home-title"><span className="home-chip">大巴</span><span>上车</span><span>探索 <em>AI</em></span></h1>
-          <p className="home-meta"><strong>大 巴</strong><span>普通上班族 / AI 爱好者 / 动漫观众</span></p>
-          <div className="home-actions"><Link className="home-cta" href="/articles/">阅读实测</Link><a className="home-down" href="#products">↓ 往下滑</a></div>
+          <p className="home-hello">HELLO, I'M DABA</p>
+          <p className="home-intro">上车，一起探索 AI。</p>
+          <p className="home-meta">普通上班族 / AI 爱好者 / 动漫观众</p>
+          <div className="home-actions"><Link className="home-explore" href="#products">开始探索<span aria-hidden="true">→</span></Link><Link className="home-read" href="/articles/">阅读实测 ↗</Link></div>
         </div>
-        <div className="home-stage">
-          <Turntable />
-          <p className="home-stage-note" aria-hidden="true"><b>熬夜款</b> · 拖动转一圈</p>
-        </div>
+        <Link className="home-down" href="#products"><span aria-hidden="true">↓</span>往下滑</Link>
       </div>
     </section>
 
     <nav className="home-col home-tabs" aria-label="本页分区">
-      {sections.map((s, i) => <a key={s.id} href={"#" + s.id} className={i === 0 ? "is-first" : ""}>{s.label}</a>)}
+      {sections.map((s, i) => <Link key={s.id} href={"#" + s.id} className={i === 0 ? "is-first" : ""}>{s.label}</Link>)}
     </nav>
 
     <section id="products" className="home-col home-section" data-num="01" aria-labelledby="home-products-title">

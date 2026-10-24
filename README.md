@@ -20,7 +20,7 @@ npm run serve      # 本地预览 out/ http://localhost:4173
 发布前运行 `npm run build`，再运行 `node scripts/check-export-links.cjs` 检查有没有坏链接或丢失的图片。
 
 素材脚本（需要时运行）：
-- `node scripts/make-home-images.cjs "E:\个人IP形象文件"`：从形象资料导出首页 3D 图和熬夜款转盘帧到 `public/home/`
+- `node scripts/make-home-images.cjs "E:\个人IP形象文件"`：从形象资料导出首页 3D 图、基础款与熬夜款转盘帧到 `public/home/`。基础款按每帧人物边界居中，并生成统一尺寸的帧与元数据；不要手动替换生成图片。
 - `node scripts/make-starfield.cjs`：重新生成首页星空 SVG
 - `node scripts/make-webp.cjs`：内容页手绘插图 PNG 转 WebP
 
@@ -28,7 +28,7 @@ npm run serve      # 本地预览 out/ http://localhost:4173
 
 | 路由 | 内容 | 布局模式 |
 |---|---|---|
-| `/` | 首页：3D 形象、内容方向、最新文章、下班后的大巴、联系方式 | 满屏星空、窄栏、超大标题与编号分区 |
+| `/` | 首页：基础款转盘、产品、AI skill 实测、推荐、关于我、联系方式 | 星空背景、杂志式横排大字与前景人物、底部信息带、五个编号分区 |
 | `/about/` | 司机档案：背包 IP、自介与内容方向配图 | 留白分栏 / 文本内容 |
 | `/contact/` | 乘车指南：邮箱与平台账号 | 邮箱入口 / 清晰账号列表 |
 | `/articles/` | 真实文章列表 | 文章主视觉与阅读入口 |
@@ -37,6 +37,10 @@ npm run serve      # 本地预览 out/ http://localhost:4173
 ## 内容待补（TODO）
 
 后续补齐各平台的真实主页 URL；当前保留账号搜索说明和可直达的邮箱。文章列表只展示已发布内容，不使用占位文章或虚构日期。
+
+首页转盘支持自动旋转、暂停、拖动、左右按钮与方向键，Home 回到正面、End 到最后一帧。手动操作后暂停自动旋转；离开首屏或切到后台时停止计时。系统开启“减少动态效果”时只保留手动旋转，页内跳转直接到位；其余情况下使用平滑滚动和内容页短淡入。
+
+当前整合版只推送 `preview/hero-turntable`，由该分支自动更新预览，不直接推送 `main`。推荐清单保留“整理中”占位，待有真实内容后补齐。
 
 ## 项目资料
 

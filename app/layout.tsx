@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./globals.css";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
@@ -18,9 +19,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="zh-CN">
+    <html lang="zh-CN" data-scroll-behavior="smooth">
       <body>
-        <a className="skip-link" href="#main-content">跳到主要内容</a>
+        <Link className="skip-link" href="#main-content">跳到主要内容</Link>
         <Nav />
         {children}
         <Footer />
