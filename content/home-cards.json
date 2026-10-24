@@ -3,8 +3,9 @@
     {
       "id": "cyber-blindbox",
       "title": "大巴赛博盲盒",
-      "description": "下班后，我在偷偷变强。8 款公仔（7 常规 + 1 隐藏）加彩蛋「超能大巴」，可以在线开盒。",
-      "url": "https://bigchen316.github.io/daba-cyber-blindbox/site/",
+      "description": "点盒子开一款，集齐 8 款公仔，召唤超能大巴。",
+      "url": "/projects/cyber-blindbox/",
+      "interactive": "blindbox",
       "tag": "VOL.01",
       "image": "/home/product-box.webp",
       "imageAlt": "大巴赛博盲盒 VOL.01 星空包装盒",

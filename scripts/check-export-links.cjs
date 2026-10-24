@@ -20,6 +20,11 @@ function walk(dir) {
         if (fs.existsSync(target) && fs.statSync(target).isDirectory()) assert.ok(fs.existsSync(path.join(target, "index.html")), "Missing page: " + url);
         links++;
       }
+      // 独立开盒网页的纹理和公仔精灵图也要随导出完整发布。
+      if (isProject) for (const match of html.matchAll(/["'(]((?:assets|figs)\/[\w./-]+)["')]/g)) {
+        assert.ok(fs.existsSync(path.resolve(path.dirname(file), match[1])), file + ": missing project asset " + match[1]);
+        links++;
+      }
       pages++;
     }
   }

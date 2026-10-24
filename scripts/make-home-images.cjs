@@ -100,5 +100,7 @@ async function exportTurntable(model, name, label, axisSource) {
   await exportTurntable("01_基础款", "turntable-base", "基础款", headAxisSource());
   await exportTurntable("05_熬夜款", "turntable-sleep", "熬夜款");
 
+  require("./import-blindbox-site.cjs")(src);
+
   for (const f of fs.readdirSync(out)) console.log(f, Math.round(fs.statSync(path.join(out, f)).size / 1024) + " KB");
 })().catch(error => { console.error(error); process.exitCode = 1; });

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HomeBlindboxCard from "./HomeBlindboxCard";
 
 export type HomeCard = {
   id: string;
@@ -9,9 +10,11 @@ export type HomeCard = {
   image?: string;
   imageAlt?: string;
   action?: string;
+  interactive?: "blindbox";
 };
 
 export default function HomeProjectCard({ card }: { card: HomeCard }) {
+  if (card.interactive === "blindbox") return <HomeBlindboxCard card={card} />;
   // 静态 HTML 项目使用普通链接，避免把 public/projects 下的网页交给 Next 路由。
   const CardLink = /^\/(articles|about|contact)\//.test(card.url) ? Link : "a";
   return <CardLink href={card.url} className="home-card home-project-card">
