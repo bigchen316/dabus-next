@@ -20,7 +20,7 @@ npm run serve      # 本地预览 out/ http://localhost:4173
 发布前运行 `npm run build`，再运行 `node scripts/check-export-links.cjs` 检查有没有坏链接或丢失的图片。
 
 素材脚本（需要时运行）：
-- `node scripts/make-home-images.cjs "E:\个人IP形象文件"`：从形象资料导出首页 3D 图到 `public/home/`
+- `node scripts/make-home-images.cjs "E:\个人IP形象文件"`：从形象资料导出首页 3D 图和熬夜款转盘帧到 `public/home/`
 - `node scripts/make-starfield.cjs`：重新生成首页星空 SVG
 - `node scripts/make-webp.cjs`：内容页手绘插图 PNG 转 WebP
 
