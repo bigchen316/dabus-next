@@ -96,9 +96,8 @@ async function exportTurntable(model, name, label, axisSource) {
   await sharp(path.join(productImages, "box.jpg")).resize(720).webp({ quality: 82 }).toFile(path.join(out, "product-box.webp"));
   await sharp(path.join(productImages, "lineup.jpg")).webp({ quality: 80 }).toFile(path.join(out, "product-lineup.webp"));
 
-  // 首屏沿用用户选择的基础款；旧熬夜款也继续由同一脚本生成。
+  // 首屏转盘用基础款。
   await exportTurntable("01_基础款", "turntable-base", "基础款", headAxisSource());
-  await exportTurntable("05_熬夜款", "turntable-sleep", "熬夜款");
 
   require("./import-blindbox-site.cjs")(src);
 
