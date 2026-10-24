@@ -2,7 +2,8 @@
   "label": "基础款",
   "model": "01_基础款",
   "frames": 24,
-  "width": 360,
+  "width": 412,
   "height": 880,
-  "alignment": "center"
+  "alignment": "head-axis",
+  "axisX": 0.5
 }

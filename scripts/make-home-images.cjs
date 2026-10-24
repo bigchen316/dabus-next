@@ -3,6 +3,9 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const sharp = require("sharp");
+const os = require("node:os");
+const { createHash } = require("node:crypto");
+const { spawnSync } = require("node:child_process");
 const src = process.argv[2];
 const out = path.resolve(__dirname, "../public/home");
 fs.mkdirSync(out, { recursive: true });
@@ -17,8 +20,24 @@ const figures = {
   "fig-super": "混元3D上传/09_彩蛋_超能大巴.png",
 };
 
-async function exportTurntable(model, name, label, centerFrames = false) {
-  const ttSrc = path.join(src, "渲染/公仔转盘", model);
+function headAxisSource() {
+  const model = path.join(src, "blender素材/3D模型/01_基础款.glb");
+  const renderer = path.join(__dirname, "render-home-turntable.py");
+  const key = createHash("sha256").update(fs.readFileSync(model)).update(fs.readFileSync(renderer)).digest("hex").slice(0, 20);
+  const cache = path.join(os.tmpdir(), "dabus-head-axis", key);
+  if (!fs.existsSync(path.join(cache, "axis.json")) || Array.from({ length: 24 }, (_, i) => `f_${String(i).padStart(2, "0")}.png`).some(file => !fs.existsSync(path.join(cache, file)))) {
+    const blender = process.env.BLENDER_PATH || "C:/Program Files/Blender Foundation/Blender 5.2/blender.exe";
+    if (!fs.existsSync(blender)) throw new Error("Set BLENDER_PATH to the local Blender executable to generate the head-axis turntable.");
+    console.log("Rendering base figure around the head axis; subsequent exports reuse this cache.");
+    const result = spawnSync(blender, ["--background", "--python", renderer, "--", "--model", model, "--out", cache], { stdio: "inherit" });
+    if (result.error || result.status !== 0) throw result.error || new Error(`Blender exited with ${result.status}`);
+  }
+  return cache;
+}
+
+async function exportTurntable(model, name, label, axisSource) {
+  const ttSrc = axisSource || path.join(src, "渲染/公仔转盘", model);
+  const axis = axisSource ? JSON.parse(fs.readFileSync(path.join(ttSrc, "axis.json"), "utf8")) : null;
   const ttOut = path.join(out, name);
   const frames = fs.readdirSync(ttSrc).filter(f => /^f_\d+\.png$/.test(f)).sort();
   if (frames.length !== 24) throw new Error(`${model}: expected 24 frames, found ${frames.length}`);
@@ -49,26 +68,23 @@ async function exportTurntable(model, name, label, centerFrames = false) {
     const left = Math.max(0, box.left - 12), top = Math.max(0, box.top - 12);
     return { left, top, width: Math.min(image.width, box.right + 13) - left, height: Math.min(image.height, box.bottom + 13) - top };
   };
-  const regions = images.map(image => regionFor(centerFrames ? image.box : union, image));
-  const width = Math.max(...regions.map(region => region.width));
-  const height = Math.max(...regions.map(region => region.height));
+  const regions = images.map(image => {
+    const region = regionFor(union, image);
+    if (!axis) return region;
+    // 所有角度保留同一相机画布，以穿过头部中心的固定竖线为轴，禁止逐帧追着外轮廓居中。
+    const halfWidth = Math.ceil(Math.max(axis.axisX - region.left, region.left + region.width - axis.axisX));
+    const left = axis.axisX - halfWidth;
+    if (left < 0 || axis.axisX + halfWidth > image.width) throw new Error("Head-axis crop exceeds the rendered canvas.");
+    return { ...region, left, width: halfWidth * 2 };
+  });
   for (const [i, image] of images.entries()) {
     const region = regions[i];
-    let normalized;
-    if (centerFrames) {
-      const crop = await sharp(image.cleaned).extract(region).png().toBuffer();
-      // 各帧共用同一画布，每帧的可见轮廓中心都对齐画布中心。
-      const centered = await sharp({ create: { width, height, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } })
-        .composite([{ input: crop, left: Math.floor((width - region.width) / 2), top: Math.floor((height - region.height) / 2) }]).png().toBuffer();
-      normalized = sharp(centered);
-    } else {
-      normalized = sharp(image.cleaned).extract(region);
-    }
+    const normalized = sharp(image.cleaned).extract(region);
     await normalized.resize({ height: 880 }).webp({ quality: 80, alphaQuality: 90 }).toFile(path.join(ttOut, `f_${String(i).padStart(2, "0")}.webp`));
   }
   const meta = await sharp(path.join(ttOut, "f_00.webp")).metadata();
-  fs.writeFileSync(path.join(ttOut, "metadata.json"), JSON.stringify({ label, model, frames: frames.length, width: meta.width, height: meta.height, alignment: centerFrames ? "center" : "shared-crop" }, null, 2) + "\n");
-  console.log(name, `${frames.length} frames`, `${meta.width}x${meta.height}`, centerFrames ? "centered" : "shared crop");
+  fs.writeFileSync(path.join(ttOut, "metadata.json"), JSON.stringify({ label, model, frames: frames.length, width: meta.width, height: meta.height, alignment: axis ? "head-axis" : "shared-crop", ...(axis ? { axisX: 0.5 } : {}) }, null, 2) + "\n");
+  console.log(name, `${frames.length} frames`, `${meta.width}x${meta.height}`, axis ? "head axis" : "shared crop");
 }
 
 (async () => {
@@ -81,7 +97,7 @@ async function exportTurntable(model, name, label, centerFrames = false) {
   await sharp(path.join(productImages, "lineup.jpg")).webp({ quality: 80 }).toFile(path.join(out, "product-lineup.webp"));
 
   // 首屏沿用用户选择的基础款；旧熬夜款也继续由同一脚本生成。
-  await exportTurntable("01_基础款", "turntable-base", "基础款", true);
+  await exportTurntable("01_基础款", "turntable-base", "基础款", headAxisSource());
   await exportTurntable("05_熬夜款", "turntable-sleep", "熬夜款");
 
   for (const f of fs.readdirSync(out)) console.log(f, Math.round(fs.statSync(path.join(out, f)).size / 1024) + " KB");

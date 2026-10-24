@@ -10,7 +10,9 @@ function walk(dir) {
     if (item.isDirectory()) walk(file);
     else if (item.name.endsWith(".html")) {
       const html = fs.readFileSync(file, "utf8");
-      assert.match(html, /id="main-content"/, file + ": accessible main missing");
+      // public/projects 可承载独立 HTML 网站；站点自身页面继续检查统一的无障碍入口。
+      const isProject = file.startsWith(path.join(out, "projects") + path.sep);
+      if (!isProject) assert.match(html, /id="main-content"/, file + ": accessible main missing");
       for (const match of html.matchAll(/(?:href|src)="(\/[^"]*)"/g)) {
         const url = match[1].split(/[?#]/)[0];
         const target = path.join(out, decodeURIComponent(url));
