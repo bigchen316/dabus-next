@@ -103,11 +103,14 @@ body:has(.home) { --night:#0a0f1f; --night-card:#121933; --night-muted:#9ca3bd; 
 .home-project-visual { display:grid; place-items:center; overflow:hidden; margin-top:auto; padding-top:20px; }
 .home-project-card .home-project-visual img { width:100%; height:auto; margin:0; aspect-ratio:4/3; object-fit:contain; background:transparent; }
 .home-project-action { margin-top:18px; color:var(--bus-yellow); font-size:13px; font-weight:600; }
-.home-blindbox-stage { position:relative; margin-top:18px; }
+.home-blindbox-card { padding:18px; }
+.home-blindbox-card .home-project-tag { margin-top:6px; }
+.home-blindbox-description { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:1; overflow:hidden; margin-top:6px !important; line-height:1.35; }
+.home-blindbox-stage { position:relative; margin-top:12px; }
 .home-blindbox-stage iframe { display:block; width:100%; border:0; opacity:0; transition:opacity 180ms ease-out; color-scheme:dark; }
 .home-blindbox-stage iframe.is-ready { opacity:1; }
 .home-blindbox-loading { position:absolute; inset:0; display:grid; align-content:start; padding-top:90px; text-align:center; font-size:13px; color:var(--night-muted); }
-.home-blindbox-card > .home-project-action { align-self:flex-start; text-decoration:underline; text-underline-offset:4px; }
+.home-blindbox-card > .home-project-action { align-self:flex-start; margin-top:10px; text-decoration:underline; text-underline-offset:4px; }
 .home-blindbox-card > .home-project-action:hover { color:#ffe376; }
 @media(hover:hover) {
   .home-project-card:hover { transform:translateY(-4px); border-color:#5a6485; background:#171f3b; box-shadow:0 14px 24px #0003; }

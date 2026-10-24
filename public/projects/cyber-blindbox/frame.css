@@ -14,25 +14,20 @@ a { color:inherit; }
 .stage::after { animation:none; }
 .stage .hint { pointer-events:none; }
 .stage:has(.holder:focus-visible) { outline:2px solid var(--accent); outline-offset:3px; }
-/* 首页卡片：舞台、开盒按钮、结果、收集放进同一个紧凑区域。 */
+/* 首页卡片保留拖动、开盒和结果；完整收藏信息在独立开盒页展示。 */
 html[data-embed="card"] { overflow:hidden; }
 [data-embed="card"] body { background:var(--bg); font-size:13px; }
 [data-embed="card"] .wrap { padding:0; width:100%; max-width:none; }
 [data-embed="card"] .back-home,[data-embed="card"] .save-note,[data-embed="card"] .copy > :not(.collect),[data-embed="card"] #spinBtn { display:none; }
-[data-embed="card"] .hero { display:flex; flex-direction:column; padding:0; gap:14px; }
-[data-embed="card"] .stage-col,[data-embed="card"] .copy { width:100%; gap:10px; }
-[data-embed="card"] .stage { width:100%; border-radius:10px; box-shadow:none; }
+[data-embed="card"] .hero { display:flex; flex-direction:column; padding:0; gap:6px; }
+[data-embed="card"] .stage-col,[data-embed="card"] .copy { width:100%; gap:6px; }
+[data-embed="card"] .stage { width:100%; height:220px; aspect-ratio:auto; border-radius:10px; box-shadow:none; }
+[data-embed="card"] .holder { height:58cqw; }
 [data-embed="card"] .hint { top:auto; bottom:3%; font-size:12px; padding:5px 7px; }
 [data-embed="card"] .controls { width:100%; }
 [data-embed="card"] .btn.small { min-height:44px; width:100%; padding:9px 12px; font-size:14px; transition:background-color 160ms ease-out; }
 [data-embed="card"] .btn:hover { transform:none; background:#ffda54; border-color:#ffda54; color:var(--on-accent); }
 [data-embed="card"] .result { min-height:38px; font-size:13px; line-height:1.5; }
 [data-embed="card"] .result span { display:block; font-size:12px; }
-[data-embed="card"] .collect { gap:7px; padding-top:12px; }
-[data-embed="card"] .collect h2 { font-size:13px; letter-spacing:0; }
-[data-embed="card"] .slots { gap:4px; max-width:none; }
-[data-embed="card"] .slot { border-width:1px; border-radius:5px; font-size:13px; }
-[data-embed="card"] .egg-line { flex-wrap:wrap; gap:4px 6px; font-size:13px; }
-[data-embed="card"] .egg-line i { font-size:12px; padding:0 5px; }
-[data-embed="card"] .egg-line > span:first-child { display:none; }
+[data-embed="card"] .collect { display:none; }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; } }
